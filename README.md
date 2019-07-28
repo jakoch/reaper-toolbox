@@ -1,4 +1,4 @@
-# reaper-toolbox
+# reaper-toolbox [![Build status](https://ci.appveyor.com/api/projects/status/cis0xfeg8g2jgr42/branch/master?svg=true)](https://ci.appveyor.com/project/jakoch/reaper-toolbox/branch/master)
 
 This repository builds an installer for Reaper DAW with additional tools included.
 
