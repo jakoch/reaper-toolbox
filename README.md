@@ -10,11 +10,10 @@ This repository builds an installer for Reaper DAW with additional tools include
    - [ ] Reaper User Guide 
        - https://www.reaper.fm/userguide.php
    - [ ] Reaper SWS 
-       - http://www.sws-extension.org/ 
+       - http://www.sws-extension.org/ & http://www.standingwaterstudios.com/
        - https://github.com/reaper-oss/sws 
-       - http://www.standingwaterstudios.com/index.php
    - [ ] Reaper SWS Guide 
-       - http://www.standingwaterstudios.com/download/REAPERPlusSWS171.pdf
+       - http://www.sws-extension.org/download/REAPERPlusSWS171.pdf
    - [ ] ReaPack 
        - https://github.com/cfillion/reapack/ 
        - https://github.com/cfillion/reapack/releases/latest
