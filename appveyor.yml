@@ -1,0 +1,22 @@
+# Build worker image (VM template)
+image: Visual Studio 2017
+
+#environment:
+#  access_token:
+#    secure: abc
+
+# Build Pipeline Step > Init:
+init:
+  - ps: $date = Get-Date -UFormat "%d_%m_%Y_%H%M"
+  - ps: echo $date
+
+# Build Pipeline Step > Install additional software:
+install:  
+  - curl -V
+  - "C:\Program Files (x86)\Inno Setup 5\iscc.exe" /help
+
+# Build Pipeline Step > Build:
+build_script:
+  - mkdir build
+  - "C:\Program Files (x86)\Inno Setup 5\iscc.exe" -o build Reaper-Toolbox.iss
+  
