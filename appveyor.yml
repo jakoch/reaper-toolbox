@@ -18,5 +18,4 @@ install:
 
 # Build Pipeline Step > Build:
 build_script:
-  - mkdir build
   - iscc.exe -o build Reaper-Toolbox.iss
