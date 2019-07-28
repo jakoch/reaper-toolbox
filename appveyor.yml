@@ -9,6 +9,7 @@ image: Visual Studio 2017
 init:
   - ps: $date = Get-Date -UFormat "%d_%m_%Y_%H%M"
   - ps: echo $date
+  - set PATH=%PATH%;"C:\\Program Files (x86)\\Inno Setup 5"
 
 # Build Pipeline Step > Install additional software:
 install:  
