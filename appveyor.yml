@@ -14,7 +14,11 @@ init:
 # Build Pipeline Step > Install additional software:
 install:  
   - curl -V
+  - iscc.exe
 
 # Build Pipeline Step > Build:
 build_script:
-  - iscc.exe -o build Reaper-Toolbox.iss
+  # Fetch Components
+  - build-tools\php\php.exe build-tools\get-latest-versions\grab.php
+  # Build Installer
+  - iscc.exe -o build installer\Reaper-Toolbox.iss
