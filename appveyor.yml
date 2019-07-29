@@ -12,13 +12,11 @@ init:
   - set PATH=%PATH%;"C:\\Program Files (x86)\\Inno Setup 5"
 
 # Build Pipeline Step > Install additional software:
-install:  
-  - curl -V
-  - iscc.exe
-
+#install:  
+  
 # Build Pipeline Step > Build:
 build_script:
-  # Fetch Components
-  - build-tools\php\php.exe build-tools\get-latest-versions\grab.php
+  # Fetch Components, Generate Versions.txt, Generate "install.iss"
+  - build-tools\php\php.exe build-tools\build.php
   # Build Installer
   - iscc.exe -o build installer\Reaper-Toolbox.iss
