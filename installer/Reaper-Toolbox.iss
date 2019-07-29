@@ -64,6 +64,10 @@ Name: english; MessagesFile: compiler:Default.isl
 ; incorporate all files of the download folder for this installation wizard ;deleteafterinstall
 Source: ..\downloads\*; DestDir: {tmp}; Flags: dontcopy
 
+[Run]
+Filename: "{app}\reaper.exe"; Description: "Launch Reaper DAW"; Flags: postinstall nowait skipifsilent
+Filename: "{app}\reaper_toolbox_versions.txt"; Description: "Show versions of installed software"; Flags: postinstall shellexec skipifsilent
+
 [Code]
 procedure InstallProgressPage;
 var
@@ -74,6 +78,9 @@ begin
     ProgressPage.Show;
     try    
       #include "install.iss"
+             
+      // Installation Script for "Reaper Toolbox Versions file"
+      RenameFile(ExpandConstant('{tmp}\versions.txt'), ExpandConstant('{app}\reaper_toolbox_versions.txt'));
 
       ProgressPage.SetProgress(100, 100);       
     finally
