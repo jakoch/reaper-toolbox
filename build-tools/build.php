@@ -120,7 +120,7 @@ class Reapack_VersionGrabber extends VersionGrabber
 
     function getInstallCommand()
     {
-    $install_cmd_template = "RenameFile(ExpandConstant('{tmp}\\reaper_reapack64.dll'), ExpandConstant('{app}\Plugins\\reaper_reapack64.dll'));";
+    $install_cmd_template = "RenameFile(ExpandConstant('{tmp}\\reaper_reapack64.dll'), ExpandConstant('{app}\UserPlugins\\reaper_reapack64.dll'));";
 
     return $install_cmd_template;
   }
