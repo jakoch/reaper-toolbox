@@ -16,7 +16,11 @@ init:
   
 # Build Pipeline Step > Build:
 build_script:
-  # Fetch Components, Generate Versions.txt, Generate "install.iss"
+  # Fetch Components, Generate "downloads\versions.txt", Generate "installer\install.iss"
   - build-tools\php\php.exe build-tools\build.php
+  # List Downloads
+  - ls -lhs downloads
   # Build Installer
-  - iscc.exe -o build installer\Reaper-Toolbox.iss
+  - iscc.exe /Orelease installer\Reaper-Toolbox.iss
+  # List Release Folder
+  - ls -lhs release
