@@ -291,10 +291,16 @@ class VersionDisplay
 
 class Downloader extends DownloadUtil
 {
+  function __construct()
+  {
+    if(!is_dir(Paths::getDownloadFolder()) {
+      mkdir(Paths::getDownloadFolder());
+    }
+  }
+
   function setDownloads(array $downloads)
   {
     $this->downloads[] = $downloads;
-
   }
 
   function downloadAll()
@@ -406,7 +412,7 @@ class Application
       $this->innosetupGenerator->setVersionGrabber($grabber);
     }
 
-    //$this->downloader->downloadAll();
+    $this->downloader->downloadAll();
 
     echo $this->versionsDisplay->printVersionTable();
 
