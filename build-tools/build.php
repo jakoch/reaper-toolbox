@@ -293,7 +293,7 @@ class Downloader extends DownloadUtil
 {
   function __construct()
   {
-    if(!is_dir(Paths::getDownloadFolder()) {
+    if(!is_dir(Paths::getDownloadFolder())) {
       mkdir(Paths::getDownloadFolder());
     }
   }
