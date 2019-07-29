@@ -26,28 +26,33 @@ VersionInfoDescription={#APP_NAME} {#APP_VERSION}
 VersionInfoTextVersion={#APP_VERSION}
 VersionInfoCopyright=Copyright (C) 2018 - {#COPYRIGHT_YEAR} {#APP_PUBLISHER}, All Rights Reserved.
 
+OutputDir=..\release
 OutputBaseFilename=Reaper-Toolbox-v{#APP_VERSION}-x64
-           
+
+; compression           
 Compression=lzma2/ultra
 LZMAUseSeparateProcess=yes
 LZMANumBlockThreads=2
 InternalCompressLevel=max
 SolidCompression=true
+
+; TODO: show a warning to the user to save & close any running applications
 CloseApplications=no
+
 ; disable wizard pages: Languages, Ready
 ShowLanguageDialog=no
 DisableStartupPrompt=yes
 DisableReadyPage=yes
 CreateAppDir=yes
-UsePreviousAppDir=yes
+AppendDefaultDirName=yes
 DefaultDirName={commonpf}\Reaper 
 ShowComponentSizes=no
 PrivilegesRequired=none
 Uninstallable=no
  
+; style
 WizardStyle=modern
 BackColor=clBlack 
-    
 ;SetupIconFile={#SOURCE_ROOT}..\installer\icons\Setup.ico
 ;WizardImageFile={#SOURCE_ROOT}..\installer\icons\banner-left-164x314-standard.bmp
 ;WizardSmallImageFile={#SOURCE_ROOT}..\installer\icons\icon-topright-55x55-stamp.bmp

@@ -21,6 +21,6 @@ build_script:
   # List Downloads
   - ls -lhs downloads
   # Build Installer
-  - iscc.exe /Orelease installer\Reaper-Toolbox.iss
+  - iscc.exe installer\Reaper-Toolbox.iss
   # List Release Folder
   - ls -lhs release
