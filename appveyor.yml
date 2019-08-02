@@ -24,3 +24,18 @@ build_script:
   - build-tools\InnoSetup6\iscc.exe installer\Reaper-Toolbox.iss
   # List Release Folder
   - ls -lhs release
+
+# Deployment (Appveyor to Github Releases)
+deploy:
+  release: Reaper-Toolbox-v$(appveyor_build_version)
+  #description: 'Reaper-Toolbox-v$(appveyor_build_version)'
+  provider: GitHub
+  auth_token:
+    secure: J8ppEUaj+/rG+CIAz9xf996MHAJd+etyniwSPbdINFT4aBSpULhUtBsUr14DxUwq
+  artifact: /build/*.exe
+  draft: false
+  prerelease: false
+  force_update: true
+  on:
+    branch: master
+    APPVEYOR_REPO_TAG: true # deploy on tag push only
