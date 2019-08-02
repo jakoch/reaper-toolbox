@@ -25,17 +25,22 @@ build_script:
   # List Release Folder
   - ls -lhs release
 
+# Define Deployment Artifacts
+artifacts:
+  - path: '/build/*.exe'
+    name: Installer-Executable
+
 # Deployment (Appveyor to Github Releases)
 deploy:
-  release: Reaper-Toolbox-v$(appveyor_build_version)
-  #description: 'Reaper-Toolbox-v$(appveyor_build_version)'
   provider: GitHub
-  auth_token:
-    secure: J8ppEUaj+/rG+CIAz9xf996MHAJd+etyniwSPbdINFT4aBSpULhUtBsUr14DxUwq
-  artifact: /build/*.exe
+  release: Reaper-Toolbox-v$(appveyor_build_version)
+  #description: 'Reaper-Toolbox-v$(appveyor_build_version)'  
+  artifact: Installer-Executable
   draft: false
   prerelease: false
-  force_update: true
+  force_update: true            # overwrite files of existing release on GitHub
   on:
-    branch: master
-    APPVEYOR_REPO_TAG: true # deploy on tag push only
+    branch: master              # release from master branch only
+    APPVEYOR_REPO_TAG: true     # deploy on tag push only
+  auth_token:
+    secure: J8ppEUaj+/rG+CIAz9xf996MHAJd+etyniwSPbdINFT4aBSpULhUtBsUr14DxUwq
