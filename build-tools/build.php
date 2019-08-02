@@ -184,7 +184,7 @@ class ReaperUserGuide_VersionGrabber extends VersionGrabber
 
   function getInstallCommand()
   {
-    $install_cmd_template = "RenameFile(ExpandConstant('{tmp}\%s'), ExpandConstant('{app}\Docs\ReaperUserGuide.pdf'));";
+    $install_cmd_template = "RenameFile(ExpandConstant('{tmp}\%s'), ExpandConstant('{app}\Docs\Reaper_User_Guide.pdf'));";
 
     return sprintf($install_cmd_template, $this->filename);
   }
@@ -248,7 +248,7 @@ class SWSExtensionUserGuide_VersionGrabber extends VersionGrabber
 
   function getInstallCommand()
   {
-    $install_cmd_template = "RenameFile(ExpandConstant('{tmp}\REAPERPlusSWS%s.pdf'), ExpandConstant('{app}\Docs\REAPERPlusSWS%s.pdf'));";
+    $install_cmd_template = "RenameFile(ExpandConstant('{tmp}\REAPERPlusSWS%s.pdf'), ExpandConstant('{app}\Docs\Reaper_SWS_User_Guide.pdf'));";
 
     return sprintf($install_cmd_template, $this->latest_version, $this->latest_version);
   }
@@ -281,7 +281,7 @@ class VersionDisplay
     return $out;
   }
   function writeFile() {
-    $file = Paths::getDownloadFolder().'versions.txt';
+    $file = Paths::getDownloadFolder().'reaper_toolbox_versions.txt';
     
     if(!file_exists($file)) {
       file_put_contents($file, $this->printVersionTable());

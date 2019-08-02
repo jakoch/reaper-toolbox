@@ -49,6 +49,7 @@ DefaultDirName={commonpf}\Reaper
 ShowComponentSizes=no
 PrivilegesRequired=none
 Uninstallable=no
+DefaultGroupName=Reaper
  
 ; style
 WizardStyle=modern
@@ -67,6 +68,34 @@ Source: ..\downloads\*; DestDir: {tmp}; Flags: dontcopy
 [Run]
 Filename: "{app}\reaper.exe"; Description: "Launch Reaper DAW"; Flags: postinstall nowait skipifsilent
 Filename: "{app}\reaper_toolbox_versions.txt"; Description: "Show versions of installed software"; Flags: postinstall shellexec skipifsilent
+
+[Tasks]
+Name: desktopicon; Description: "{cm:CreateDesktopIcon} for Reaper"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: quicklaunchicon; Description: "Create a &Quick Launch icon for Reaper"; GroupDescription: "{cm:AdditionalIcons}"; Flags: unchecked
+Name: associate; Description: "&Associate Reaper project files (.rpp)"; Flags: unchecked
+
+[Icons]
+; create desktop icon
+Name: "{userdesktop}\Reaper"; Filename: "{app}\reaper.exe"; Tasks: desktopicon
+; create quick launch icon
+Name: "{userappdata}\Microsoft\Internet Explorer\Quick Launch\Reaper"; Filename: "{app}\reaper.exe"; Tasks: quicklaunchicon
+; create start-menu group
+Name: "{group}\Reaper (x64)"; Filename: "{app}\reaper.exe"; WorkingDir: "{app}"
+Name: "{group}\Reaper (x64) (create new project)"; Filename: "{app}\reaper.exe"; Parameters: "-new"; WorkingDir: "{app}"
+Name: "{group}\Reaper (x64) (reset config to factory defaults)"; Filename: "{app}\reaper.exe"; Parameters: "-resetconfig"; WorkingDir: "{app}"
+Name: "{group}\Reaper (x64) (show audio configuration on startup)"; Filename: "{app}\reaper.exe"; Parameters: "-audiocfg"; WorkingDir: "{app}"
+Name: "{group}\Reaper (x64) User Guide"; Filename: "{app}\Docs\Reaper_User_Guide.pdf"; WorkingDir: "{app}"
+Name: "{group}\Reaper (x64) SWS User Guide"; Filename: "{app}\Reaper_SWS_User_Guide.pdf"; WorkingDir: "{app}"
+Name: "{group}\REAPER License and User Agreement"; Filename: "{app}\license.txt"; WorkingDir: "{app}"
+Name: "{group}\Whatsnew.txt"; Filename: "{app}\whatsnew.txt"; WorkingDir: "{app}"
+Name: "{group}\Show versions of installed software"; Filename: "{app}\reaper_toolbox_versions.txt"; WorkingDir: "{app}"
+    
+[Registry]
+; create file-association for ".rpp" files. this is an optional and user selectable task, see [Tasks] section.
+Root: HKCR; Subkey: ".rpp";                       ValueData: "Reaper\";                      ValueType: string;  ValueName: ""; Flags: uninsdeletevalue; Tasks: associate
+Root: HKCR; Subkey: "Reaper";                     ValueData: "Program Reaper\";              ValueType: string;  ValueName: ""; Flags: uninsdeletekey; Tasks: associate 
+Root: HKCR; Subkey: "Reaper\DefaultIcon";         ValueData: "{app}\reaper.exe,0";           ValueType: string;  ValueName: ""; Tasks: associate
+Root: HKCR; Subkey: "Reaper\shell\open\command";  ValueData: """{app}\reaper.exe"" ""%1""";  ValueType: string;  ValueName: ""; Tasks: associate
 
 [Code]
 procedure InstallProgressPage;
