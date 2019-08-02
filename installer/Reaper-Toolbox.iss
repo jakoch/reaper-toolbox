@@ -108,8 +108,8 @@ begin
     try    
       #include "install.iss"
              
-      // Installation Script for "Reaper Toolbox Versions file"
-      RenameFile(ExpandConstant('{tmp}\versions.txt'), ExpandConstant('{app}\reaper_toolbox_versions.txt'));
+      // Installation Script for "Reaper Toolbox Versions" file
+      RenameFile(ExpandConstant('{tmp}\reaper_toolbox_versions.txt'), ExpandConstant('{app}\reaper_toolbox_versions.txt'));
 
       ProgressPage.SetProgress(100, 100);       
     finally
