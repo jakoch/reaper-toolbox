@@ -109,9 +109,9 @@ begin
       #include "install.iss"
              
       // Installation Script for "Reaper Toolbox Versions" file
+      ExtractTemporaryFile('reaper_toolbox_versions.txt');
       RenameFile(ExpandConstant('{tmp}\reaper_toolbox_versions.txt'), ExpandConstant('{app}\reaper_toolbox_versions.txt'));
-
-      ProgressPage.SetProgress(100, 100);       
+      
     finally
       ProgressPage.Hide;
     end;
