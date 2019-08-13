@@ -33,14 +33,14 @@ artifacts:
 # Deployment (Appveyor to Github Releases)
 deploy:
   provider: GitHub
-  tagname: v$(appveyor_build_version)
+  tag: v$(appveyor_build_version)
   release: Reaper-Toolbox-v$(appveyor_build_version)
-  #description: 'Reaper-Toolbox-v$(appveyor_build_version)'  
+  description: ''
   artifact: Installer-Executable
   draft: false
   prerelease: false
-  force_update: true            # overwrite files of existing release on GitHub
   on:
+    branch: master              # release from master branch only
     APPVEYOR_REPO_TAG: true     # deploy on tag push only 
   auth_token:
     secure: J8ppEUaj+/rG+CIAz9xf996MHAJd+etyniwSPbdINFT4aBSpULhUtBsUr14DxUwq
