@@ -2,24 +2,24 @@
 
 This repository builds an installer for Reaper DAW with additional tools included.
 
-#### TODO
-- [ ] Appveyor
-- [ ] Grab Latest Versions
-   - [ ] Reaper 
+##### TODO
+- [x] Appveyor
+- [x] Grab Latest Versions
+   - [x] Reaper 
        - https://www.reaper.fm/download.php
-   - [ ] Reaper User Guide 
+   - [x] Reaper User Guide 
        - https://www.reaper.fm/userguide.php
-   - [ ] Reaper SWS 
+   - [x] Reaper SWS 
        - http://www.sws-extension.org/ & http://www.standingwaterstudios.com/
        - https://github.com/reaper-oss/sws 
-   - [ ] Reaper SWS Guide 
+   - [x] Reaper SWS Guide 
        - http://www.sws-extension.org/download/REAPERPlusSWS171.pdf
-   - [ ] ReaPack 
+   - [x] ReaPack 
        - https://github.com/cfillion/reapack/ 
        - https://github.com/cfillion/reapack/releases/latest
    - [ ] UltraSchall 
        - https://github.com/Ultraschall 
        - https://ultraschall.io/ultraschall_release.txt
-- [ ] Download
-- [ ] Repackage/Recompress?
-- [ ] Build Installer
+- [x] Download
+- [x] Build Installer
+- [x] Release
