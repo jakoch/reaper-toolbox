@@ -264,7 +264,7 @@ class VersionDisplay
   }
   function printVersionTable()
   {
-    $template = "| %-30.30s | %-9.9s | %-42.42s |\n";  
+    $template = "| %-30.30s | %-9.9s | %-42.42s |" . PHP_EOL;  
     // header 
     $out = sprintf($template, 'Component', 'Version', 'URL'); 
     // line separator
