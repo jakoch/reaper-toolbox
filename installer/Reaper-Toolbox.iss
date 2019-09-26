@@ -24,9 +24,16 @@
 ; |                                                                      |
 ; +---------------------------------------------------------------------<3
 
-; version is set here, when the version isn't passed to the compiler on invocation
-#ifndef APP_VERSION
-#define APP_VERSION          "1.0.0"
+; APP_VERSION is passed to the compiler on invocation (during build)
+; But we need to reset versions like "dev-as7d6a" to simply "1.0.0" for VersionInfoVersion!
+#ifdef APP_VERSION
+  #define AppVersionStartsWithDev Pos("dev-", APP_VERSION)
+  #if AppVersionStartsWithDev == 1
+    #define APP_VERSION      "1.0.0"
+  #endif
+#elseif
+  ; if APP_VERSION isn't passed to the compiler during build, we set it here
+  #define APP_VERSION          "1.0.0"
 #endif
 
 #define APP_NAME             "Reaper Toolbox"
