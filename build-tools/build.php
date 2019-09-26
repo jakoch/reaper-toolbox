@@ -283,6 +283,7 @@ class VersionDisplay
   function printReleaseDescription()
   {
     $template = "%s %s, "; 
+    $out = '';
     foreach($this->grabbers as $grabber) {
       $out .= sprintf(
         $template, 
