@@ -299,7 +299,7 @@ class VersionDisplay
       file_put_contents($file, $this->printVersionTable());
     }
 
-    putenv('RELEASE_DESCRIPTION='.$this->printReleaseDescription())
+    putenv('RELEASE_DESCRIPTION='.$this->printReleaseDescription());
   }
 }
 
