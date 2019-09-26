@@ -24,14 +24,10 @@
 ; |                                                                      |
 ; +---------------------------------------------------------------------<3
 
-// set APP_VERSION, when an external version is found
-#ifdef EXTERNAL_APP_VERSION
- #if len(EXTERNAL_APP_VERSION)>0
-    #define APP_VERSION     EXTERNAL_APP_VERSION
- #endif
-#else
-    #pragma error 'Please set EXTERNAL_APP_VERSION!'
-#endif 
+; version is set here, when the version isn't passed to the compiler on invocation
+#ifndef APP_VERSION
+#define APP_VERSION          "1.0.0"
+#endif
 
 #define APP_NAME             "Reaper Toolbox"
 #define APP_PUBLISHER        "Jens A. Koch"
