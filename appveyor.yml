@@ -31,7 +31,7 @@ build_script:
   # List Downloads
   - ls -lhs downloads
   # Build Installer
-  - build-tools\InnoSetup6\iscc.exe installer\Reaper-Toolbox.iss
+  - build-tools\InnoSetup6\iscc.exe /DEXTERNAL_APP_VERSION=%APPVEYOR_BUILD_VERSION% installer\Reaper-Toolbox.iss
   # List Release Folder
   - ls -lhs release
 

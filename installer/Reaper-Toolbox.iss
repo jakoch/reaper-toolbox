@@ -1,4 +1,37 @@
-#define APP_VERSION          "0.1"
+;
+;          _\|/_
+;          (o o)
+; +-----oOO-{_}-OOo------------------------------------------------------+
+; |                                                                      |
+; |  Reaper Toolbox - Inno Setup Script File                             |
+; |  --------------------------------------------                        |
+; |                                                                      |
+; |  Reaper Toolbox is an installer for Reaper DAW.                      |
+; |  It installs additional tools, like SWS and ReaPack out of the box.  |
+; |                                                                      |
+; |  Author:   Jens A. Koch <jakoch@web.de>                              |
+; |  Website:  https://github.com/jakoch/reaper-toolbox                  |
+; |  License:  MIT                                                       |
+; |                                                                      |
+; |  For the full copyright and license information, please view         |
+; |  the LICENSE file that was distributed with this source code.        |
+; |                                                                      |
+; |  Note for developers                                                 |
+; |  -------------------                                                 |
+; |  A good resource for developing and understanding                    |
+; |  Inno Setup Script files is the official "Inno Setup Help".          |
+; |  Website:  http://jrsoftware.org/ishelp/index.php                    |
+; |                                                                      |
+; +---------------------------------------------------------------------<3
+
+// set APP_VERSION, when an external version is found
+#ifdef EXTERNAL_APP_VERSION
+ #if len(EXTERNAL_APP_VERSION)>0
+    #define APP_VERSION     EXTERNAL_APP_VERSION
+ #endif
+#else
+    #pragma error 'Please set EXTERNAL_APP_VERSION!'
+#endif 
 
 #define APP_NAME             "Reaper Toolbox"
 #define APP_PUBLISHER        "Jens A. Koch"

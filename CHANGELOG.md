@@ -1,6 +1,8 @@
 # Changelog
 
 ## [Unreleased]
+### Added
+- set APP_VERSION internally, by passing EXTERNAL_APP_VERSION from outside during build
 
 ## [1.0.47] - 2019-08-13
 ### Added
