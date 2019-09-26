@@ -32,6 +32,7 @@ build_script:
   - ls -lhs downloads
   # Build Installer
   - echo %APPVEYOR_BUILD_VERSION%
+  - echo %RELEASE_DESCRIPTION%
   - build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=%APPVEYOR_BUILD_VERSION% installer\Reaper-Toolbox.iss
   # List Release Folder
   - ls -lhs release
