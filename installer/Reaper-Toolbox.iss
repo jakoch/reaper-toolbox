@@ -29,10 +29,11 @@
 #define APP_VERSION          "1.0.0"
 #endif
 
-; But we need to reset APP_VERSIONs like "dev-as7d6a" to simply "1.0.0" for VersionInfoVersion!
+; reset APP_VERSIONs like "dev-as7d6a" to simply "1.0.0" for VersionInfoVersion!
 #define AppVersionStartsWithDev Pos("dev-", APP_VERSION)
 #if AppVersionStartsWithDev == 1
   #define VERSION_INFO_VERSION "1.0.0"
+  #define APP_VERSION          "1.0.0-" + APP_VERSION
 #else 
   #define VERSION_INFO_VERSION APP_VERSION
 #endif
