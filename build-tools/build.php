@@ -282,15 +282,16 @@ class VersionDisplay
   }
   function printReleaseDescription()
   {
-    $template = "%s %s" . PHP_EOL; 
+    $template = "%s %s, "; 
     foreach($this->grabbers as $grabber) {
       $out .= sprintf(
         $template, 
         $grabber->getName(),  
         $grabber->getLatestVersion()
       );
-    } 
-    return $out;
+    }
+    substr($out, 0, -1); // remove last comma
+    return $out . "\n";
   }
   function writeFile() {
     $file = Paths::getDownloadFolder().'reaper_toolbox_versions.txt';
@@ -299,7 +300,8 @@ class VersionDisplay
       file_put_contents($file, $this->printVersionTable());
     }
 
-    putenv('RELEASE_DESCRIPTION='.$this->printReleaseDescription());
+    $releaseDescription = $this->printReleaseDescription();
+    putenv("RELEASE_DESCRIPTION=$releaseDescription");
   }
 }
 
