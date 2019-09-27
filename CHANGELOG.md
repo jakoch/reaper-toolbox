@@ -2,15 +2,10 @@
 
 ## [Unreleased]
 
-## [1.1.0] - 2019-09-27
-### Added
-- pass APP_VERSION from outside during build
-- set github release description for tagged builds automatically
+- "It was a bright day in April, and the clocks were striking thirteen." - 1984
 
-## [1.0.47] - 2019-08-13
-### Added
+## [1.0.0] - 2019-09-27
 - Initial Release
 
-[Unreleased]: https://github.com/jakoch/reaper-toolbox/compare/v1.1.0...HEAD
-[1.1.0]: https://github.com/jakoch/reaper-toolbox/releases/tag/v1.1.0
-[1.0.47]: https://github.com/jakoch/reaper-toolbox/releases/tag/v1.0.47
+[Unreleased]: https://github.com/jakoch/reaper-toolbox/compare/v1.0.0...HEAD
+[1.0.0]: https://github.com/jakoch/reaper-toolbox/releases/tag/v1.0.0
