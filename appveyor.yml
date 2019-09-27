@@ -48,7 +48,7 @@ artifacts:
 deploy:
   provider: GitHub
   tag: $(APPVEYOR_REPO_TAG_NAME)
-  release: 'Reaper-Toolbox v$(APPVEYOR_REPO_TAG_NAME)'
+  release: 'Reaper-Toolbox $(APPVEYOR_REPO_TAG_NAME)'
   description: '[View CHANGELOG.md](https://github.com/jakoch/reaper-toolbox/blob/master/CHANGELOG.md)\nVersions:\n$(RELEASE_DESCRIPTION)'
   artifact: Installer-Executable
   draft: false
