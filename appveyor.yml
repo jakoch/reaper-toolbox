@@ -54,7 +54,7 @@ deploy:
   draft: false
   prerelease: false
   on:
-    branch: master              # release from master branch only
+    #branch: master             # release from master branch only
     APPVEYOR_REPO_TAG: true     # deploy on tag push only 
   auth_token:
     secure: J8ppEUaj+/rG+CIAz9xf996MHAJd+etyniwSPbdINFT4aBSpULhUtBsUr14DxUwq
