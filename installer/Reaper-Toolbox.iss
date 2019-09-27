@@ -35,7 +35,8 @@
   #define VERSION_INFO_VERSION "1.0.0"
   #define APP_VERSION          "1.0.0-" + APP_VERSION
 #else 
-  #define VERSION_INFO_VERSION APP_VERSION
+  #define APP_VERSION_WITHOUT_LEADING_V StringChange(APP_VERSION, "v", "")
+  #define VERSION_INFO_VERSION APP_VERSION_WITHOUT_LEADING_V
 #endif
 
 #define APP_NAME             "Reaper Toolbox"
