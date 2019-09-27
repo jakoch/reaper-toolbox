@@ -1,4 +1,5 @@
 <?php
+error_reporting(E_ALL);
 
 class Paths
 {
@@ -282,17 +283,16 @@ class VersionDisplay
   }
   function printReleaseDescription()
   {
-    $template = "%s %s, "; 
-    $out = '';
+    $template = "%s %s\\n"; 
+    $out = '';    
     foreach($this->grabbers as $grabber) {
       $out .= sprintf(
         $template, 
         $grabber->getName(),  
         $grabber->getLatestVersion()
       );
-    }
-    substr($out, 0, -1); // remove last comma
-    return $out . "\n";
+    }   
+    return $out;
   }
   function writeFile() {
     $file = Paths::getDownloadFolder().'reaper_toolbox_versions.txt';
@@ -301,8 +301,11 @@ class VersionDisplay
       file_put_contents($file, $this->printVersionTable());
     }
 
-    $releaseDescription = $this->printReleaseDescription();
-    putenv("RELEASE_DESCRIPTION=$releaseDescription");
+    $file2 = __DIR__ . '/../set_release_description_env_var.bat';
+    $desc = $this->printReleaseDescription();
+    file_put_contents($file2, "@echo off \nset RELEASE_DESCRIPTION=$desc");
+    //exec('cmd.exe /c '. $file2);
+    //unlink($file2);
   }
 }
 

@@ -28,11 +28,13 @@ init:
 build_script:
   # Fetch Components, Generate "downloads\versions.txt", Generate "installer\install.iss"
   - build-tools\php\php.exe build-tools\build.php
+  # Set RELEASE_DESCRIPTION env var
+  - set_release_description_env_var.bat
+  - echo %RELEASE_DESCRIPTION%
   # List Downloads
   - ls -lhs downloads
   # Build Installer
-  - echo %APPVEYOR_BUILD_VERSION%
-  - echo %RELEASE_DESCRIPTION%
+  - echo %APPVEYOR_BUILD_VERSION%  
   - build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=%APPVEYOR_BUILD_VERSION% installer\Reaper-Toolbox.iss
   # List Release Folder
   - ls -lhs release
@@ -47,7 +49,7 @@ deploy:
   provider: GitHub
   tag: $(APPVEYOR_REPO_TAG_NAME)
   release: 'Reaper-Toolbox v$(APPVEYOR_REPO_TAG_NAME)'
-  description: 'Reaper-Toolbox v$(APPVEYOR_REPO_TAG_NAME) \n [View CHANGELOG.md](https://github.com/jakoch/reaper-toolbox/blob/master/CHANGELOG.md)'
+  description: '[View CHANGELOG.md](https://github.com/jakoch/reaper-toolbox/blob/master/CHANGELOG.md)\nVersions:\n$(RELEASE_DESCRIPTION)'
   artifact: Installer-Executable
   draft: false
   prerelease: false
