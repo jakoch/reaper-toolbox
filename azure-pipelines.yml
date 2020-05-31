@@ -18,9 +18,10 @@ pool:
 
 steps:
   - script: |
+       COMMIT_SHORT=$(git rev-parse --short=7 HEAD)
        echo '##vso[task.setvariable variable=GIT_COMMIT_SHA]$(Build.SourceVersion)'
        echo '##vso[task.setvariable variable=GIT_BRANCH]$(Build.SourceBranchName)'
-       echo '##vso[task.setvariable variable=GIT_COMMIT_SHA_SHORT]%$(Build.SourceVersion):~0,5%'
+       echo '##vso[task.setvariable variable=GIT_COMMIT_SHA_SHORT]$COMMIT_SHORT'
     displayName: 'Configure Environment Variables'
   - script: |
       echo $(GIT_COMMIT_SHA)
