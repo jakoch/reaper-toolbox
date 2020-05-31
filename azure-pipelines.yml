@@ -1,6 +1,6 @@
 # Azure Pipelines
 
-name: 1.$(TeamProject)_$(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyyy).$(Date:MMdd).$(Rev:r)
+name: $(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyMMdd).$(Rev:r)
 
 # run pipeline build, when master branch changes
 trigger:
@@ -15,7 +15,7 @@ pool:
 variables:
   buildPlatform: 'x64'
   buildConfiguration: 'Release'
-  APP_BUILD_VERSION: '1.0.0-$(Build.BuildNumber)_$(Date:yyyyMMdd)$(Rev:.r)'
+  APP_BUILD_VERSION: '1.0.0-$(Build.BuildNumber)_$(Date:yyMMdd)$(Rev:.r)'
 
 stages:
 - stage: Download
