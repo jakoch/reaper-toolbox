@@ -11,5 +11,11 @@ variables:
 steps:
 
  - script: build-tools\php\php.exe build-tools\build.php
-   displayName: Fetch Components, Generate downloads\versions.txt, Generate installer\install.iss
+   displayName: Download Components
+ - script: ls -lhs downloads
+   displayName: List Downloads Folder
+ - script: build-tools\InnoSetup6\iscc.exe installer\Reaper-Toolbox.iss
+   displayName: Build Installer
+ - script: ls -lhs release
+   displayName: List Release Folder
  
