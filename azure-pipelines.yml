@@ -12,10 +12,19 @@ pr: none
 pool:
   vmImage: 'windows-latest'
 
-variables:
-  APP_BUILD_VERSION: '1.0.0-$(Build.BuildNumber)_$(Date:yyMMdd)$(Rev:.r)'
+# can not get the git commit hash here, why?
+#variables:
+# APP_BUILD_VERSION: '1.0.0-dev-$(Build.BuildNumber)-$(Date:yyMMdd)$(Rev:.r)'
 
 steps:
+  - bash: |    
+      gitCommitShort=$(git rev-parse --short=7 HEAD) |
+      echo "##vso[task.setvariable variable=gitCommit;isOutput=true]$gitCommitShort"
+    displayName: Store commit hash in var gitCommit
+  - bash: |
+      build_version=1.0.0-dev-$(gitCommit)-$(Date:yyMMdd)$(Rev:.r)
+      echo "##vso[task.setvariable variable=APP_BUILD_VERSION;isOutput=true]$build_version"
+    displayName: Set App Build Version
   - script: build-tools\php\php.exe build-tools\build.php
     displayName: Download Components
   - script: ls -lhs downloads
