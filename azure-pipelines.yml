@@ -41,7 +41,7 @@ steps:
 
   - task: GitHubRelease@1
     inputs:
-      githubConnection: GithubOAuth
+      githubConnection: jakoch
       repositoryName: '$(Build.Repository.Name)'
       action: 'create'
       target: '$(Build.SourceVersion)'
