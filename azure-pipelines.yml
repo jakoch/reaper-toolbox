@@ -1,0 +1,15 @@
+trigger:
+- master
+
+pool:
+  vmImage: 'windows-latest'
+
+variables:
+  buildPlatform: 'x64'
+  buildConfiguration: 'Release'
+
+steps:
+
+ - script: build-tools\php\php.exe build-tools\build.php
+   displayName: Fetch Components, Generate downloads\versions.txt, Generate installer\install.iss
+ 
