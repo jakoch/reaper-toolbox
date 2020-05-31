@@ -15,23 +15,15 @@ pool:
 variables:
   APP_BUILD_VERSION: '1.0.0-$(Build.BuildNumber)_$(Date:yyMMdd)$(Rev:.r)'
 
-jobs:
-  - job: "Download_Components"
-    steps:
-     - script: build-tools\php\php.exe build-tools\build.php
-       displayName: Download Components
-     - script: ls -lhs downloads
-       displayName: "List Downloads"
-       
-  - job: "Build_Installer"
-    steps:
-     - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
-       displayName: Compile Installer
-
-  - job: "Add_GithubRelease"
-    steps:
-    - task: GithubRelease@0
-      displayName: Add GithubRelease (Windows)
+steps:
+  - script: build-tools\php\php.exe build-tools\build.php
+    displayName: Download Components
+  - script: ls -lhs downloads
+    displayName: "List Downloads"
+  - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
+    displayName: Compile Installer
+  #- task: GithubRelease@0
+  #  displayName: Add GithubRelease (Windows)
 
 schedules:
  - cron: "0 12 * * 0"
