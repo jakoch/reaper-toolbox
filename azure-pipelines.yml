@@ -8,14 +8,42 @@ variables:
   buildPlatform: 'x64'
   buildConfiguration: 'Release'
 
-steps:
+stages:
+- stage: Download
+  jobs:
 
- - script: build-tools\php\php.exe build-tools\build.php
-   displayName: Download Components
- - script: ls -lhs downloads
-   displayName: List Downloads Folder
- - script: build-tools\InnoSetup6\iscc.exe installer\Reaper-Toolbox.iss
-   displayName: Build Installer
- - script: ls -lhs release
-   displayName: List Release Folder
+  - job: "Setup_Versioning_Variables"
+    steps:
+      - bash: |
+          DATE="$(date +%Y-%m-%d)"
+          echo "##vso[task.setvariable variable=build.date]$DATE"
+        displayName: "Create date variable"
+
+  - job: "Download_Components"
+    steps:
+     - script: build-tools\php\php.exe build-tools\build.php
+     - script: ls -lhs downloads
+
+- stage: Compile
+  jobs:  
+
+  - job: "Build_Installer"
+    steps:
+     - script: build-tools\InnoSetup6\iscc.exe installer\Reaper-Toolbox.iss
+ 
+- stage: Deploy
+  jobs:
+
+  - job: "Add_GithubRelease"
+    steps:
+    - task: GithubRelease@0
+      displayName: Add GithubRelease (Windows)
+
+schedules:
+ - cron: "0 12 * * 0"
+   displayName: Build Weekly@Sunday
+   branches:
+    include:
+    - master
+   always: true
  
