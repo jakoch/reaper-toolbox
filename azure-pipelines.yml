@@ -13,14 +13,9 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  buildPlatform: 'x64'
-  buildConfiguration: 'Release'
   APP_BUILD_VERSION: '1.0.0-$(Build.BuildNumber)_$(Date:yyMMdd)$(Rev:.r)'
 
-stages:
-- stage: Download
-  jobs:
-
+jobs:
   - job: "Download_Components"
     steps:
      - script: build-tools\php\php.exe build-tools\build.php
@@ -28,24 +23,10 @@ stages:
      - script: ls -lhs downloads
        displayName: "List Downloads"
        
-  - job: "Publish_Artifact"
-    steps:
-    - task: PublishBuildArtifacts@1
-      displayName: 'Publish artifact'
-      inputs:
-        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
-        ArtifactName: 'Downloads'
-
-- stage: Compile
-  jobs:  
-
   - job: "Build_Installer"
     steps:
      - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
        displayName: Compile Installer
- 
-- stage: Deploy
-  jobs:
 
   - job: "Add_GithubRelease"
     steps:
