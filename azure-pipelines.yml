@@ -20,7 +20,7 @@ steps:
   - bash: |    
       gitCommitShort=$(git rev-parse --short=7 HEAD) |
       echo "##vso[task.setvariable variable=gitCommit]$gitCommitShort"
-      echo $(gitCommitShort)
+      echo $gitCommit
     displayName: Store commit hash in var gitCommit
   - bash: |
       build_version=$(1.0.0-dev)-$(gitCommit)-$(Date:yyMMdd)$(Rev:.r)
