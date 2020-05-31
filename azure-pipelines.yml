@@ -17,11 +17,11 @@ pool:
 # APP_BUILD_VERSION: '1.0.0-dev-$(Build.BuildNumber)-$(Date:yyMMdd)$(Rev:.r)'
 
 steps:
-  - script: |
-      set COMMIT_SHORT=$(git rev-parse --short=7 HEAD)
+  - bash: |
+      COMMIT_SHORT=$(git rev-parse --short=7 HEAD)
       echo '##vso[task.setvariable variable=GIT_COMMIT_SHA]$(Build.SourceVersion)'
       echo '##vso[task.setvariable variable=GIT_BRANCH]$(Build.SourceBranchName)'
-      echo '##vso[task.setvariable variable=GIT_COMMIT_SHA_SHORT]$(COMMIT_SHORT)'
+      echo '##vso[task.setvariable variable=GIT_COMMIT_SHA_SHORT;isOutput=true]$COMMIT_SHORT'
     displayName: 'Configure Environment Variables'
   - script: |
       echo $(GIT_COMMIT_SHA)
