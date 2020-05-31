@@ -1,5 +1,13 @@
+# Azure Pipelines
+
+name: 1.$(TeamProject)_$(Build.DefinitionName)_$(SourceBranchName)_$(Date:yyyy).$(Date:MMdd).$(Rev:r)
+
+# run pipeline build, when master branch changes
 trigger:
 - master
+
+# don't run against pull-requests
+pr: none
 
 pool:
   vmImage: 'windows-latest'
@@ -7,29 +15,34 @@ pool:
 variables:
   buildPlatform: 'x64'
   buildConfiguration: 'Release'
+  APP_BUILD_VERSION: '1.0.0-$(Build.BuildNumber)_$(Date:yyyyMMdd)$(Rev:.r)'
 
 stages:
 - stage: Download
   jobs:
 
-  - job: "Setup_Versioning_Variables"
-    steps:
-      - bash: |
-          DATE="$(date +%Y-%m-%d)"
-          echo "##vso[task.setvariable variable=build.date]$DATE"
-        displayName: "Create date variable"
-
   - job: "Download_Components"
     steps:
      - script: build-tools\php\php.exe build-tools\build.php
+       displayName: Download Components
      - script: ls -lhs downloads
+       displayName: "List Downloads"
+       
+  - job: "Publish_Artifact"
+    steps:
+    - task: PublishBuildArtifacts@1
+      displayName: 'Publish artifact'
+      inputs:
+        PathtoPublish: '$(Build.ArtifactStagingDirectory)'
+        ArtifactName: 'Downloads'
 
 - stage: Compile
   jobs:  
 
   - job: "Build_Installer"
     steps:
-     - script: build-tools\InnoSetup6\iscc.exe installer\Reaper-Toolbox.iss
+     - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
+       displayName: Compile Installer
  
 - stage: Deploy
   jobs:
