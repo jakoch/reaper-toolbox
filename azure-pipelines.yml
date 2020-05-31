@@ -20,9 +20,11 @@ steps:
   - script: |
        echo '##vso[task.setvariable variable=GIT_COMMIT_SHA]$(Build.SourceVersion)'
        echo '##vso[task.setvariable variable=GIT_BRANCH]$(Build.SourceBranchName)'
+       echo '##vso[task.setvariable variable=GIT_COMMIT_SHA_SHORT]$(%GIT_COMMIT_SHA:~0,7%)'
     displayName: 'Configure Environment Variables'
   - script: |
       echo $(GIT_COMMIT_SHA)
+      echo $(GIT_COMMIT_SHA_SHORT)
       echo $(GIT_BRANCH)
     displayName: 'Echo Commit SHA and Branch'
 
