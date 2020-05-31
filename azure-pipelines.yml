@@ -19,11 +19,14 @@ pool:
 steps:
   - bash: |    
       gitCommitShort=$(git rev-parse --short=7 HEAD) |
-      echo "##vso[task.setvariable variable=gitCommit;isOutput=true]$gitCommitShort"
+      echo "##vso[task.setvariable variable=gitCommit]$gitCommitShort"
+      echo $(gitCommitShort)
     displayName: Store commit hash in var gitCommit
   - bash: |
-      build_version=1.0.0-dev-$(gitCommit)-$(Date:yyMMdd)$(Rev:.r)
-      echo "##vso[task.setvariable variable=APP_BUILD_VERSION;isOutput=true]$build_version"
+      build_version=$(1.0.0-dev)-$(gitCommit)-$(Date:yyMMdd)$(Rev:.r)
+      echo $(build_version)
+      echo "##vso[task.setvariable variable=APP_BUILD_VERSION]$build_version"
+      echo $(APP_BUILD_VERSION)
     displayName: Set App Build Version
   - script: build-tools\php\php.exe build-tools\build.php
     displayName: Download Components
