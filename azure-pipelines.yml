@@ -13,42 +13,45 @@ pool:
   vmImage: 'windows-latest'
 
 # can not get the git commit hash here, why?
-#variables:
-# APP_BUILD_VERSION: '1.0.0-dev-$(Build.BuildNumber)-$(Date:yyMMdd)$(Rev:.r)'
+variables:
+ #APP_BUILD_VERSION: '1.0.0-dev-$(Build.BuildNumber)-$(Date:yyMMdd)$(Rev:.r)'
+ APP_BUILD_VERSION: '1.0.0-dev-$(Date:yyMMdd)$(Rev:.r)'
 
 steps:
-  - bash: |
-      gitMessage=$(git log --format='%s' -1)
-      echo "##vso[task.setvariable variable=commitMessage;isOutput=true]$gitMessage" 
-      COMMIT_HASH=$(git rev-parse --short HEAD)
-      echo '##vso[task.setvariable variable=GIT_COMMIT_SHA]$COMMIT_HASH'
-      echo '##vso[task.setvariable variable=GIT_BRANCH]$(Build.SourceBranchName)'
-    displayName: 'Configure Environment Variables'
-  - script: |
-      echo $(commitMessage)
-      echo $(GIT_COMMIT_SHA)
-      echo $(GIT_BRANCH)
-    displayName: 'Echo Commit SHA and Branch'
-
+# WHAT THE FUCK! how to get the short commit hash???
+# build_version=$(1.0.0-dev)-$(gitCommit)-$(Date:yyMMdd)$(Rev:.r)
   #- bash: |
-  #    build_version=$(1.0.0-dev)-$(gitCommit)-$(Date:yyMMdd)$(Rev:.r)
-  #    echo $(build_version)
-  #    echo "##vso[task.setvariable variable=APP_BUILD_VERSION]$build_version"
-  #    echo $(APP_BUILD_VERSION)
-  #  displayName: Set App Build Version
+  #    latest_commit=$(git rev-parse --short HEAD)
+  #    echo '##vso[task.setvariable variable=GIT_COMMIT_SHA]$latest_commit'
+  #    echo '##vso[task.setvariable variable=GIT_BRANCH]$(Build.SourceBranchName)'
+  #  displayName: 'Configure Environment Variables'
+  #- script: |
+  #    echo $(GIT_COMMIT_SHA)
+  #    echo $(GIT_BRANCH)
+  #  displayName: 'Echo Commit SHA and Branch'
 
-  #- script: build-tools\php\php.exe build-tools\build.php
-  #  displayName: Download Components
+  - script: build-tools\php\php.exe build-tools\build.php
+    displayName: Download Components
 
-  #- script: ls -lhs downloads
-  #  displayName: "List Downloads"
+  - script: ls -lhs downloads
+    displayName: "List Downloads"
 
-  #- script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
-  #  displayName: Compile Installer
+  - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
+    displayName: Compile Installer
 
-  #- task: GithubRelease@0
-  #  displayName: Add GithubRelease (Windows)
-
+  - task: GitHubRelease@1
+    inputs:
+      githubConnection: jakoch
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'create'
+      target: '$(Build.SourceVersion)'
+      tagSource: 'gitTag'
+      releaseNotesFilePath: '$(Build.ArtifactStagingDirectory)/release-notes.txt'
+      assets: '$(Build.ArtifactStagingDirectory)/Reaper-Toolbox*.exe'
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
+    displayName: Add Github Release
+      
 schedules:
  - cron: "0 12 * * 0"
    displayName: Build Weekly@Sunday
