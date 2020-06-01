@@ -15,7 +15,7 @@ pool:
 # can not get the git commit hash here, why?
 variables:
  #APP_BUILD_VERSION: '1.0.0-dev-$(Build.BuildNumber)-$(Date:yyMMdd)$(Rev:.r)'
- APP_BUILD_VERSION: '1.0.0-dev-$(Date:yyMMdd)$(Rev:.r)'
+ APP_BUILD_VERSION: '1.0.0-dev'
 
 steps:
 # WHAT THE FUCK! how to get the short commit hash???
@@ -29,6 +29,21 @@ steps:
   #    echo $(GIT_COMMIT_SHA)
   #    echo $(GIT_BRANCH)
   #  displayName: 'Echo Commit SHA and Branch'
+
+  - task: CmdLine@2
+    displayName: 'Set Version Number vars'
+    inputs:
+      script: |
+        SETLOCAL EnableDelayedExpansion
+        FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse --short HEAD`) DO (
+            @echo ##vso[task.setvariable variable=GIT_COMMIT_HASH_SHORT;]%%F
+        )
+      workingDirectory: '$(Build.SourcesDirectory)'
+  - bash: |
+       echo $GIT_COMMIT_HASH_SHORT
+       echo $(GIT_COMMIT_HASH_SHORT)
+       echo ##vso[task.setvariable variable=APP_BUILD_VERSION;]$APP_BUILD_VERSION-$GIT_COMMIT_HASH_SHORT-$(Date:yyMMdd)$(Rev:.r)
+    displayName: Set APP_BUILD_Version
 
   - script: build-tools\php\php.exe build-tools\build.php
     displayName: Download Components
