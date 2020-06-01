@@ -26,7 +26,7 @@ steps:
   - bash: |
        echo $GIT_COMMIT_HASH_SHORT
        echo $GIT_BRANCH
-       echo '##vso[task.setvariable variable=APP_BUILD_VERSION;is_output=true]dev-$GIT_COMMIT_HASH_SHORT-$(Date:yyMMdd)$(Rev:.r)'
+       echo ##vso[task.setvariable variable=APP_BUILD_VERSION;is_output=true]dev-$GIT_COMMIT_HASH_SHORT
     displayName: Set APP_BUILD_Version
 
   - script: build-tools\php\php.exe build-tools\build.php
