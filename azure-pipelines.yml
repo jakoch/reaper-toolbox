@@ -28,13 +28,13 @@ steps:
        echo $GIT_COMMIT_HASH_SHORT
        echo $GIT_BRANCH
        echo $APP_BUILD_VERSION
-    displayName: Set APP_BUILD_Version
+    displayName: Show APP_BUILD_VERSION
 
   - script: build-tools\php\php.exe build-tools\build.php
     displayName: Download Components
 
   - script: ls -lhs downloads
-    displayName: "List Downloads"
+    displayName: List Downloads
 
   - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$APP_BUILD_VERSION installer\Reaper-Toolbox.iss
     displayName: Compile Installer
@@ -44,7 +44,7 @@ steps:
       githubConnection: 'github.com_jakoch'
       repositoryName: '$(Build.Repository.Name)'
       action: 'create'
-      tag: $(Build.BuildNumber)
+      tag: '$(Build.BuildNumber)'
       target: '$(Build.SourceVersion)'
       tagSource: 'userSpecifiedTag'
       releaseNotesFilePath: '$(Build.ArtifactStagingDirectory)/release-notes.txt'
