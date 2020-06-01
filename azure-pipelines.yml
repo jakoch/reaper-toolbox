@@ -33,7 +33,10 @@ steps:
   - script: build-tools\php\php.exe build-tools\build.php
     displayName: Download Components
 
-  - script: ls -lhs downloads
+  - script: |
+      ls -lhs downloads
+      ls -lhs build-tools
+      ls -lhs $(Build.ArtifactStagingDirectory)
     displayName: List Downloads
 
   - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
