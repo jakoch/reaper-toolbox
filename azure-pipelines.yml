@@ -36,7 +36,7 @@ steps:
   - script: |
       ls -lhs downloads
       ls -lhs build-tools
-      ls -lhs $(Build.ArtifactStagingDirectory)
+      ls -lhs .
     displayName: List Downloads
 
   - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
@@ -62,5 +62,4 @@ schedules:
    branches:
     include:
     - master
-   always: true
- 
+   always: true 
