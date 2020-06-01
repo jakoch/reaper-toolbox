@@ -21,8 +21,8 @@ steps:
         FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse --short HEAD`) DO (
             @echo ##vso[task.setvariable variable=GIT_COMMIT_HASH_SHORT;]%%F
         )
-        echo '##vso[task.setvariable variable=GIT_BRANCH]$(Build.SourceBranchName)'
-        echo '##vso[task.setvariable variable=APP_BUILD_VERSION]dev-$(GIT_COMMIT_HASH_SHORT)'
+        echo ##vso[task.setvariable variable=GIT_BRANCH]$(Build.SourceBranchName)
+        echo ##vso[task.setvariable variable=APP_BUILD_VERSION]dev-$(GIT_COMMIT_HASH_SHORT)
       workingDirectory: '$(Build.SourcesDirectory)'
   - bash: |
        echo $GIT_COMMIT_HASH_SHORT
