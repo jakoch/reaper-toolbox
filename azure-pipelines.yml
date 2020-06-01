@@ -22,11 +22,12 @@ steps:
             @echo ##vso[task.setvariable variable=GIT_COMMIT_HASH_SHORT;]%%F
         )
         echo '##vso[task.setvariable variable=GIT_BRANCH]$(Build.SourceBranchName)'
+        echo '##vso[task.setvariable variable=APP_BUILD_VERSION]dev-$(GIT_COMMIT_HASH_SHORT)'
       workingDirectory: '$(Build.SourcesDirectory)'
   - bash: |
        echo $GIT_COMMIT_HASH_SHORT
        echo $GIT_BRANCH
-       echo ##vso[task.setvariable variable=APP_BUILD_VERSION]dev-$GIT_COMMIT_HASH_SHORT
+       echo $APP_BUILD_VERSION
     displayName: Set APP_BUILD_Version
 
   - script: build-tools\php\php.exe build-tools\build.php
@@ -35,7 +36,7 @@ steps:
   - script: ls -lhs downloads
     displayName: "List Downloads"
 
-  - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$APP_BUILD_VERSION installer\Reaper-Toolbox.iss
+  - bash: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$APP_BUILD_VERSION installer\Reaper-Toolbox.iss
     displayName: Compile Installer
 
   - task: GitHubRelease@1
