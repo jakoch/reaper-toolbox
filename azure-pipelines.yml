@@ -26,7 +26,7 @@ steps:
   - bash: |
        echo $GIT_COMMIT_HASH_SHORT
        echo $GIT_BRANCH
-       echo ##vso[task.setvariable variable=APP_BUILD_VERSION;is_output=true]dev-$GIT_COMMIT_HASH_SHORT
+       echo ##vso[task.setvariable variable=APP_BUILD_VERSION]dev-$GIT_COMMIT_HASH_SHORT
     displayName: Set APP_BUILD_Version
 
   - script: build-tools\php\php.exe build-tools\build.php
@@ -35,7 +35,7 @@ steps:
   - script: ls -lhs downloads
     displayName: "List Downloads"
 
-  - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
+  - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$APP_BUILD_VERSION installer\Reaper-Toolbox.iss
     displayName: Compile Installer
 
   - task: GitHubRelease@1
