@@ -309,7 +309,7 @@ class VersionDisplay
     //unlink($file2);
     
     // Note: this approach is used to set the Github Release Notes on Azure-Pipelines
-    $file3 = __DIR__ . '/../release_notes.txt';
+    $file3 = __DIR__ . '/../release_notes.md';
     file_put_contents($file3, $desc);    
   }
 }
