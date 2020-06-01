@@ -1,6 +1,6 @@
 # Azure Pipelines
 
-name: Reaper-Toolbox_$(Date:yyMMdd).$(Rev:r)
+name: "Reaper-Toolbox v$(Date:yyyy)_$(Date:MMdd)_r$(Rev:r)"
 
 # run pipeline build, when master branch changes
 trigger:
@@ -50,7 +50,7 @@ steps:
       tag: '$(Build.BuildNumber)'
       target: '$(Build.SourceVersion)'
       tagSource: 'userSpecifiedTag'
-      releaseNotesFilePath: 'release_notes.txt'
+      releaseNotesFilePath: 'release_notes.md'
       assets: 'release/Reaper-Toolbox*.exe'
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
