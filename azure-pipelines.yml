@@ -36,7 +36,7 @@ steps:
   - script: ls -lhs downloads
     displayName: "List Downloads"
 
-  - bash: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$APP_BUILD_VERSION installer\Reaper-Toolbox.iss
+  - bash: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
     displayName: Compile Installer
 
   - task: GitHubRelease@1
