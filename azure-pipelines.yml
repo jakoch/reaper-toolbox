@@ -50,7 +50,7 @@ steps:
       tag: '$(Build.BuildNumber)'
       target: '$(Build.SourceVersion)'
       tagSource: 'userSpecifiedTag'
-      releaseNotesFilePath: '$(Build.SourcesDirectory)/release-notes.txt'
+      releaseNotesFilePath: 'release-notes.txt'
       assets: '$(Build.ArtifactStagingDirectory)/release/Reaper-Toolbox*.exe'
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
