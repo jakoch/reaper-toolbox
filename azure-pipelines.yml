@@ -1,6 +1,6 @@
 # Azure Pipelines
 
-name: "Reaper-Toolbox v$(Date:yyyy)_$(Date:MMdd)_r$(Rev:r)"
+name: "Reaper-Toolbox_v$(Date:yyyy)_$(Date:MMdd)_r$(Rev:r)"
 
 # run pipeline build, when master branch changes
 trigger:
