@@ -4,6 +4,8 @@ This repository builds an installer for Reaper DAW with additional tools include
 
 ##### TODO
 - [x] Appveyor
+- [x] Azure Pipelines 
+   - [x] Deployment: Weekly rolling Github Releases (Sunday) 
 - [x] Grab Latest Versions
    - [x] Reaper 
        - https://www.reaper.fm/download.php
