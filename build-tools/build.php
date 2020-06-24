@@ -132,7 +132,8 @@ class Reaper_VersionGrabber extends VersionGrabber
   public $name = "Reaper";
   public $url = 'https://www.reaper.fm/download.php';
 
-  private $version_regexp = '/Version (\d.\d+):/';
+  // tested strings "Version 6.11:" | "Version 6.12c:"
+  private $version_regexp = '/Version (\d+.\d+[a-z]?):/';
 
   //https://www.reaper.fm/files/5.x/reaper5981_x64-install.exe
   private $download_regexp = '/files\/(.*)x64-install.exe/';
