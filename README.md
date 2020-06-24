@@ -1,6 +1,6 @@
-# reaper-toolbox [![Build status](https://ci.appveyor.com/api/projects/status/cis0xfeg8g2jgr42/branch/master?svg=true)](https://ci.appveyor.com/project/jakoch/reaper-toolbox/branch/master) [![Build Status](https://dev.azure.com/jakoch/jakoch/_apis/build/status/jakoch.reaper-toolbox?branchName=master)](https://dev.azure.com/jakoch/jakoch/_build/latest?definitionId=1&branchName=master)
+# Reaper Toolbox [![Build Status](https://dev.azure.com/jakoch/jakoch/_apis/build/status/jakoch.reaper-toolbox?branchName=master)](https://dev.azure.com/jakoch/jakoch/_build/latest?definitionId=1&branchName=master)
 
-This repository builds an installer for Reaper DAW with additional tools included.
+This repository builds an installer for Reaper DAW, which contains Reaper and the extensions SWS and ReaPack.
 
 ##### TODO
 - [x] Appveyor
