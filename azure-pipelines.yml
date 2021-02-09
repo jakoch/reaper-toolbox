@@ -2,9 +2,9 @@
 
 name: "Reaper-Toolbox_v$(Date:yyMMdd)_r$(Rev:r)"
 
-# run pipeline build, when master branch changes
+# run pipeline build, when main branch changes
 trigger:
-- master
+- main
 
 # don't run against pull-requests
 pr: none
@@ -61,5 +61,5 @@ schedules:
    displayName: Build Weekly@Sunday
    branches:
     include:
-    - master
+    - main
    always: true 
