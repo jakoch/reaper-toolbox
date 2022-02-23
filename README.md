@@ -4,8 +4,9 @@ This repository builds an installer for Reaper DAW, which contains Reaper and th
 
 #### DEV
 
-A simple PHP script is used for version detection, downloading of components and to build the Innosetup-based installer.
-CBuilds are done continously on a weekly schedule using Azure Pipelines and deployed to Github Releases.
+A PHP script is used for version detection, downloading of components and to build the Innosetup-based installer.
+
+Builds are done continously on a weekly schedule using Azure Pipelines and deployed to Github Releases.
 
 ##### TODO
 - [x] Appveyor
