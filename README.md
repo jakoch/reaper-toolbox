@@ -2,6 +2,11 @@
 
 This repository builds an installer for Reaper DAW, which contains Reaper and the extensions SWS and ReaPack.
 
+#### DEV
+
+A simple PHP script is used for version detection, downloading of components and to build the Innosetup-based installer.
+CBuilds are done continously on a weekly schedule using Azure Pipelines and deployed to Github Releases.
+
 ##### TODO
 - [x] Appveyor
 - [x] Azure Pipelines 
