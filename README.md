@@ -1,4 +1,4 @@
-# Reaper Toolbox [![Build Status](https://dev.azure.com/jakoch/jakoch/_apis/build/status/jakoch.reaper-toolbox?branchName=main)](https://dev.azure.com/jakoch/jakoch/_build/latest?definitionId=1&branchName=main)
+# Reaper Toolbox [![Build Status](https://dev.azure.com/jakoch/jakoch/_apis/build/status/jakoch.reaper-toolbox?branchName=main)](https://dev.azure.com/jakoch/jakoch/_build/latest?definitionId=1&branchName=main) [![License](https://img.shields.io/github/license/jakoch/reaper-toolbox.svg)](https://github.com/jakoch/reaper-toolbox/blob/main/LICENSE.md)
 
 This repository builds an installer for Reaper DAW, which contains Reaper and the extensions SWS and ReaPack.
 
