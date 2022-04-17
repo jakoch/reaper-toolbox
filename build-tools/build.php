@@ -48,7 +48,7 @@ class DownloadUtil
   {
     $opts = [
       'http' =>[
-        'user_agent' => 'Reaper-Toolbox-Installer-Build-Script',
+        'user_agent' => 'Reaper-Toolbox-Installer-Build-Script (https://github.com/jakoch/reaper-toolbox/)',
         'method' => 'GET',
         'header' => implode("\r\n", ['Content-type: text/plain;']),
         'timeout' => 5,
