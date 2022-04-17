@@ -9,7 +9,7 @@ A PHP script is used for version detection, downloading of components and to bui
 Builds are done continously on a weekly schedule using Azure Pipelines and deployed to Github Releases.
 
 ##### TODO
-- [x] Appveyor
+- [x] ~Appveyor~
 - [x] Azure Pipelines 
    - [x] Deployment: Weekly rolling Github Releases (Sunday) 
 - [x] Grab Latest Versions
