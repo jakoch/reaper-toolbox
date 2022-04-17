@@ -1,4 +1,4 @@
-; *** Inno Setup version 6.0.0+ Portuguese (Portugal) messages ***
+; *** Inno Setup version 6.1.0+ Portuguese (Portugal) messages ***
 ;
 ; Maintained by Nuno Silva (nars AT gmx.net)
 
@@ -133,6 +133,7 @@ WizardSelectDir=Seleccione a localização de destino
 SelectDirDesc=Onde deverá ser instalado o [name]?
 SelectDirLabel3=O [name] será instalado na seguinte pasta.
 SelectDirBrowseLabel=Para continuar, clique em Seguinte. Se desejar seleccionar uma pasta diferente, clique em Procurar.
+DiskSpaceGBLabel=É necessário pelo menos [gb] GB de espaço livre em disco.
 DiskSpaceMBLabel=É necessário pelo menos [mb] MB de espaço livre em disco.
 CannotInstallToNetworkDrive=O Assistente de Instalação não pode instalar numa unidade de rede.
 CannotInstallToUNCPath=O Assistente de Instalação não pode instalar num caminho UNC.
@@ -160,6 +161,7 @@ NoUninstallWarningTitle=Componentes Encontrados
 NoUninstallWarning=O Assistente de Instalação detectou que os seguintes componentes estão instalados no seu computador:%n%n%1%n%nSe desseleccionar estes componentes eles não serão desinstalados.%n%nDeseja continuar?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
+ComponentsDiskSpaceGBLabel=A selecção actual necessita de pelo menos [gb] GB de espaço em disco.
 ComponentsDiskSpaceMBLabel=A selecção actual necessita de pelo menos [mb] MB de espaço em disco.
 
 ; *** "Select Additional Tasks" wizard page
@@ -190,6 +192,18 @@ ReadyMemoComponents=Componentes seleccionados:
 ReadyMemoGroup=Pasta do Menu Iniciar:
 ReadyMemoTasks=Tarefas adicionais:
 
+; *** TDownloadWizardPage wizard page and DownloadTemporaryFile
+DownloadingLabel=A transferir ficheiros adicionais...
+ButtonStopDownload=&Parar transferência
+StopDownload=Tem a certeza que deseja parar a transferência?
+ErrorDownloadAborted=Transferência cancelada
+ErrorDownloadFailed=Falha na transferência: %1 %2
+ErrorDownloadSizeFailed=Falha ao obter tamanho: %1 %2
+ErrorFileHash1=Falha de verificação do ficheiro: %1
+ErrorFileHash2=Hash do ficheiro inválida: experado %1, encontrado %2
+ErrorProgress=Progresso inválido: %1 de %2
+ErrorFileSize=Tamanho de ficheiro inválido: experado %1, encontrado %2
+
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Preparando-se para instalar
 PreparingDesc=Preparando-se para instalar o [name] no seu computador.
@@ -200,6 +214,7 @@ ApplicationsFound2=As seguintes aplicações estão a utilizar ficheiros que necess
 CloseApplications=&Fechar as aplicações automaticamente
 DontCloseApplications=&Não fechar as aplicações
 ErrorCloseApplications=O Assistente de Instalação não conseguiu fechar todas as aplicações automaticamente. Antes de continuar é recomendado que feche todas as aplicações que utilizem ficheiros que necessitem de ser actualizados pelo Assistente de Instalação.
+PrepareToInstallNeedsRestart=O Assistente de Instalação necessita reiniciar o seu computador. Depois de reiniciar o computador, execute novamente o Assistente de Instalação para completar a instalação do [name].%n%nDeseja reiniciar agora?
 
 ; *** "Installing" wizard page
 WizardInstalling=A instalar
@@ -271,8 +286,16 @@ ExistingFileReadOnly2=O ficheiro existente não pode ser substituído porque tem o
 ExistingFileReadOnlyRetry=&Remover o atributo "só de leitura" e tentar novamente
 ExistingFileReadOnlyKeepExisting=&Manter o ficheiro existente
 ErrorReadingExistingDest=Ocorreu um erro ao tentar ler o ficheiro existente:
-FileExists=O ficheiro já existe.%n%nDeseja substituí-lo?
-ExistingFileNewer=O ficheiro existente é mais recente que o que está a ser instalado. É recomendado que mantenha o ficheiro existente.%n%nDeseja manter o ficheiro existente?
+FileExistsSelectAction=Seleccione uma acção
+FileExists2=O ficheiro já existe.
+FileExistsOverwriteExisting=&Substituir o ficheiro existente
+FileExistsKeepExisting=&Manter o ficheiro existente
+FileExistsOverwriteOrKeepAll=&Fazer isto para os próximos conflitos
+ExistingFileNewerSelectAction=Seleccione uma acção
+ExistingFileNewer2=O ficheiro existente é mais recente que o que está a ser instalado.
+ExistingFileNewerOverwriteExisting=&Substituir o ficheiro existente
+ExistingFileNewerKeepExisting=&Manter o ficheiro existente (recomendado)
+ExistingFileNewerOverwriteOrKeepAll=&Fazer isto para os próximos conflitos
 ErrorChangingAttr=Ocorreu um erro ao tentar alterar os atributos do ficheiro existente:
 ErrorCreatingTemp=Ocorreu um erro ao tentar criar um ficheiro na directoria de destino:
 ErrorReadingSource=Ocorreu um erro ao tentar ler o ficheiro de origem:
@@ -285,7 +308,9 @@ ErrorRegSvr32Failed=O RegSvr32 falhou com o código de saída %1
 ErrorRegisterTypeLib=Não foi possível registar a livraria de tipos: %1
 
 ; *** Uninstall display name markings
+; used for example as 'My Program (32-bit)'
 UninstallDisplayNameMark=%1 (%2)
+; used for example as 'My Program (32-bit, All users)'
 UninstallDisplayNameMarks=%1 (%2, %3)
 UninstallDisplayNameMark32Bit=32-bit
 UninstallDisplayNameMark64Bit=64-bit

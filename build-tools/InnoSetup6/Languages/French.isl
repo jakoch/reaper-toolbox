@@ -1,7 +1,7 @@
-﻿; *** Inno Setup version 6.0.0+ French messages ***
+﻿; *** Inno Setup version 6.1.0+ French messages ***
 ;
 ; To download user-contributed translations of this file, go to:
-;   http://www.jrsoftware.org/files/istrans/
+;   https://jrsoftware.org/files/istrans/
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
@@ -25,6 +25,7 @@
 ;     "click": "Clicker" instead of "Appuyer" 
 ;     "retry": "Recommencer" au lieu de "Réessayer"
 ; + Added new 6.0.0 messages
+; + Added new 6.1.0 messages
 
 [LangOptions]
 ; The following three entries are very important. Be sure to read and 
@@ -98,7 +99,7 @@ ErrorTooManyFilesInDir=L'assistant d'installation n'a pas pu créer un fichier d
 ; *** Setup common messages
 ExitSetupTitle=Quitter l'installation
 ExitSetupMessage=L'installation n'est pas terminée. Si vous abandonnez maintenant, le programme ne sera pas installé.%n%nVous devrez relancer cet assistant pour finir l'installation.%n%nVoulez-vous quand même quitter l'assistant d'installation ?
-AboutSetupMenuItem=&À propos...
+AboutSetupMenuItem=À &propos...
 AboutSetupTitle=À Propos de l'assistant d'installation
 AboutSetupMessage=%1 version %2%n%3%n%nPage d'accueil de %1 :%n%4
 AboutSetupNote=
@@ -169,6 +170,7 @@ WizardSelectDir=Dossier de destination
 SelectDirDesc=Où [name] doit-il être installé ?
 SelectDirLabel3=L'assistant va installer [name] dans le dossier suivant.
 SelectDirBrowseLabel=Pour continuer, cliquez sur Suivant. Si vous souhaitez choisir un dossier différent, cliquez sur Parcourir.
+DiskSpaceGBLabel=Le programme requiert au moins [gb] Go d'espace disque disponible.
 DiskSpaceMBLabel=Le programme requiert au moins [mb] Mo d'espace disque disponible.
 CannotInstallToNetworkDrive=L'assistant ne peut pas installer sur un disque réseau.
 CannotInstallToUNCPath=L'assistant ne peut pas installer sur un chemin UNC.
@@ -196,6 +198,7 @@ NoUninstallWarningTitle=Composants existants
 NoUninstallWarning=L'assistant d'installation a détecté que les composants suivants sont déjà installés sur votre système :%n%n%1%n%nDésélectionner ces composants ne les désinstallera pas pour autant.%n%nVoulez-vous continuer malgré tout ?
 ComponentSize1=%1 Ko
 ComponentSize2=%1 Mo
+ComponentsDiskSpaceGBLabel=Les composants sélectionnés nécessitent au moins [gb] Go d'espace disponible.
 ComponentsDiskSpaceMBLabel=Les composants sélectionnés nécessitent au moins [mb] Mo d'espace disponible.
 
 ; *** "Select Additional Tasks" wizard page
@@ -226,6 +229,18 @@ ReadyMemoComponents=Composants sélectionnés :
 ReadyMemoGroup=Dossier du menu Démarrer :
 ReadyMemoTasks=Tâches supplémentaires :
 
+; *** TDownloadWizardPage wizard page and DownloadTemporaryFile
+DownloadingLabel=Téléchargement de fichiers supplémentaires...
+ButtonStopDownload=&Arrêter le téléchargement
+StopDownload=Êtes-vous sûr de vouloir arrêter le téléchargement ?
+ErrorDownloadAborted=Téléchargement annulé
+ErrorDownloadFailed=Le téléchargement a échoué : %1 %2
+ErrorDownloadSizeFailed=La récupération de la taille du fichier a échouée : %1 %2
+ErrorFileHash1=Le calcul de l'empreinte du fichier a échoué : %1
+ErrorFileHash2=Empreinte du fichier invalide : attendue %1, trouvée %2
+ErrorProgress=Progression invalide : %1 sur %2
+ErrorFileSize=Taille du fichier invalide : attendue %1, trouvée %2
+
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Préparation de l'installation
 PreparingDesc=L'assistant d'installation prépare l'installation de [name] sur votre ordinateur.
@@ -236,6 +251,7 @@ ApplicationsFound2=Les applications suivantes utilisent des fichiers qui doivent
 CloseApplications=&Arrêter les applications automatiquement
 DontCloseApplications=&Ne pas arrêter les applications
 ErrorCloseApplications=L'assistant d'installation n'a pas pu arrêter toutes les applications automatiquement. Nous vous recommandons de fermer toutes les applications qui utilisent des fichiers devant être mis à jour par l'assistant d'installation avant de continuer.
+PrepareToInstallNeedsRestart=L'assistant d'installation doit redémarrer votre ordinateur. Une fois votre ordinateur redémarré, veuillez relancer cet assistant d'installation pour terminer l'installation de [name].%n%nVoulez-vous redémarrer votre ordinateur maintenant ?
 
 ; *** "Installing" wizard page
 WizardInstalling=Installation en cours
@@ -307,8 +323,16 @@ ExistingFileReadOnly2=Le fichier existant ne peut pas être remplacé parce qu'i
 ExistingFileReadOnlyRetry=&Supprimer l'attribut lecture seule et réessayer
 ExistingFileReadOnlyKeepExisting=&Conserver le fichier existant
 ErrorReadingExistingDest=Une erreur s'est produite lors de la tentative de lecture du fichier existant :
-FileExists=Le fichier existe déjà.%n%nSouhaitez-vous que l'installation le remplace ?
-ExistingFileNewer=Le fichier existant est plus récent que celui que l'assistant essaie d'installer. Il est recommandé de conserver le fichier existant.%n%nSouhaitez-vous conserver le fichier existant ?
+FileExistsSelectAction=Choisissez une action
+FileExists2=Le fichier existe déjà.
+FileExistsOverwriteExisting=&Ecraser le fichier existant
+FileExistsKeepExisting=&Conserver le fichier existant
+FileExistsOverwriteOrKeepAll=&Faire ceci pour les conflits à venir
+ExistingFileNewerSelectAction=Choisissez une action
+ExistingFileNewer2=Le fichier existant est plus récent que celui que l'assistant d'installation est en train d'installer.
+ExistingFileNewerOverwriteExisting=&Ecraser le fichier existant
+ExistingFileNewerKeepExisting=&Conserver le fichier existant (recommandé)
+ExistingFileNewerOverwriteOrKeepAll=&Faire ceci pour les conflits à venir
 ErrorChangingAttr=Une erreur est survenue en essayant de modifier les attributs du fichier existant :
 ErrorCreatingTemp=Une erreur est survenue en essayant de créer un fichier dans le dossier de destination :
 ErrorReadingSource=Une erreur est survenue lors de la lecture du fichier source :

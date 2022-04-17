@@ -1,16 +1,14 @@
-; *** Inno Setup version 6.0.0+ Ukrainian messages ***
-; Author: Dmitry Onischuk
-; E-Mail: mr.lols@yandex.ua
-; Web: http://counter-strike.com.ua/
+; *** Inno Setup version 6.1.0+ Ukrainian messages ***
+; Author: Dmytro Onyshchuk
+; E-Mail: mrlols3@gmail.com
 ; Please report all spelling/grammar errors, and observations.
-; Version 2019.01.21
+; Version 2020.08.04
 
-; *** Український переклад Inno Setup для версії 6.0.0 та вище***
+; *** Український переклад Inno Setup для версії 6.1.0 та вище***
 ; Автор перекладу: Дмитро Онищук
-; E-Mail: mr.lols@yandex.ua
-; Сайт: http://counter-strike.com.ua/
+; E-Mail: mrlols3@gmail.com
 ; Будь ласка, повідомляйте про всі знайдені помилки та зауваження.
-; Версія перекладу 2019.01.21
+; Версія перекладу 2020.08.04
 
 [LangOptions]
 ; The following three entries are very important. Be sure to read and 
@@ -83,12 +81,12 @@ ErrorTooManyFilesInDir=Програмі встановлення не вдалося створити файл в папці "%
 
 ; *** Спільні повідомлення програми
 ExitSetupTitle=Вихід з програми встановлення
-ExitSetupMessage=Встановлення не закінчено. Якщо ви вийдете зараз, програму не буде встановлено.%n%nВи можете відкрити програму встановлення в інший час.%n%nВийти з програми встановлення?
+ExitSetupMessage=Встановлення не завершено. Якщо ви вийдете зараз, програму не буде встановлено.%n%nВи можете відкрити програму встановлення в іншим часом.%n%nВийти з програми встановлення?
 AboutSetupMenuItem=&Про програму встановлення...
 AboutSetupTitle=Про програму встановлення
 AboutSetupMessage=%1 версія %2%n%3%n%n%1 домашня сторінка:%n%4
 AboutSetupNote=
-TranslatorNote=Ukrainian translation by Dmitry Onischuk: http://counter-strike.com.ua/
+TranslatorNote=Ukrainian translation by Dmytro Onyshchuk
 
 ; *** Кнопки
 ButtonBack=< &Назад
@@ -155,6 +153,7 @@ WizardSelectDir=Вибір шляху встановлення
 SelectDirDesc=Куди ви бажаєте встановити [name]?
 SelectDirLabel3=Програма встановить [name] у наступну папку.
 SelectDirBrowseLabel=Натисніть «Далі», щоб продовжити. Якщо ви бажаєте вибрати іншу папку, натисніть «Огляд».
+DiskSpaceGBLabel=Необхідно як мінімум [gb] Гб вільного дискового простору.
 DiskSpaceMBLabel=Необхідно як мінімум [mb] Mб вільного дискового простору.
 CannotInstallToNetworkDrive=Встановлення не може проводитися на мережевий диск.
 CannotInstallToUNCPath=Встановлення не може проводитися по мережевому шляху.
@@ -182,6 +181,7 @@ NoUninstallWarningTitle=Компоненти існують
 NoUninstallWarning=Виявлено, що наступні компоненти вже встановленні на вашому комп’ютері:%n%n%1%n%nВідміна вибору цих компонентів не видалить їх.%n%nВи бажаєте продовжити?
 ComponentSize1=%1 Kб
 ComponentSize2=%1 Mб
+ComponentsDiskSpaceGBLabel=Даний вибір вимагає як мінімум [gb] Гб дискового простору.
 ComponentsDiskSpaceMBLabel=Даний вибір вимагає як мінімум [mb] Mб дискового простору.
 
 ; *** Сторінка "Вибір додаткових завдань"
@@ -212,16 +212,29 @@ ReadyMemoComponents=Вибрані компоненти:
 ReadyMemoGroup=Папка в меню «Пуск»:
 ReadyMemoTasks=Додаткові завдання:
 
+; *** TDownloadWizardPage wizard page and DownloadTemporaryFile
+DownloadingLabel=Завантаження додаткових файлів...
+ButtonStopDownload=&Перервати завантаження
+StopDownload=Ви дійсно бажаєте перервати завантаження?
+ErrorDownloadAborted=Завантаження перервано
+ErrorDownloadFailed=Помилка завантаження: %1 %2
+ErrorDownloadSizeFailed=Помилка отримання розміру: %1 %2
+ErrorFileHash1=Помилка хешу файлу: %1
+ErrorFileHash2=Невірний хеш файлу: очікувався %1, отриманий %2
+ErrorProgress=Помилка виконання: %1 з %2
+ErrorFileSize=Невірний розмір файлу: очікувався %1, отриманий %2
+
 ; *** Сторінка "Підготовка до встановлення"
 WizardPreparing=Підготовка до встановлення
 PreparingDesc=Програма встановлення готується до встановлення [name] на ваш комп’ютер.
-PreviousInstallNotCompleted=Встановлення або видалення попередньої програми не було закінчено. Вам потрібно перезавантажити ваш комп’ютер для завершення минулого встановлення.%n%nПісля перезавантаження відкрийте програму встановлення знову, щоб завершити встановлення [name].
+PreviousInstallNotCompleted=Встановлення або видалення попередньої програми не було завершено. Вам потрібно перезавантажити ваш комп’ютер для завершення минулого встановлення.%n%nПісля перезавантаження відкрийте програму встановлення знову, щоб завершити встановлення [name].
 CannotContinue=Встановлення неможливо продовжити. Будь ласка, натисніть «Скасувати» для виходу.
 ApplicationsFound=Наступні програми використовують файли, які повинні бути оновлені програмою встановлення. Рекомендується дозволили програмі встановлення автоматично закрити ці програми.
 ApplicationsFound2=Наступні програми використовують файли, які повинні бути оновлені програмою встановлення. Рекомендується дозволили програмі встановлення автоматично закрити ці програми. Після завершення встановлення, програма встановлення спробує знову запустити їх.
 CloseApplications=&Автоматично закрити програми
 DontCloseApplications=&Не закривати програми
 ErrorCloseApplications=Програма встановлення не може автоматично закрити всі програми. Рекомендується закрити всі програми, що використовують файли, які повинні бути оновлені програмою встановлення, перш ніж продовжити.
+PrepareToInstallNeedsRestart=Програмі встановлення необхідно перезавантажити ваш ПК. Після перезавантаження ПК, запустіть встановлення знову для завершення встановлення [name]%n%nВи бажаєте перезавантажити зараз?
 
 ; *** Сторінка "Встановлення"
 WizardInstalling=Встановлення
@@ -229,8 +242,8 @@ InstallingLabel=Будь ласка, зачекайте, поки [name] встановиться на ваш комп'ютер
 
 ; *** Сторінка "Встановлення завершено"
 FinishedHeadingLabel=Завершення встановлення [name]
-FinishedLabelNoIcons=Встановлення [name] на ваш комп’ютер закінчено.
-FinishedLabel=Встановлення [name] на ваш комп’ютер закінчено. Встановлені програми можна відкрити за допомогою створених ярликів.
+FinishedLabelNoIcons=Встановлення [name] на ваш комп’ютер завершено.
+FinishedLabel=Встановлення [name] на ваш комп’ютер завершено. Встановлені програми можна відкрити за допомогою створених ярликів.
 ClickFinish=Натисніть «Готово» для виходу з програми встановлення.
 FinishedRestartLabel=Для завершення встановлення [name] необхідно перезавантажити ваш комп’ютер. Перезавантажити комп’ютер зараз?
 FinishedRestartMessage=Для завершення встановлення [name] необхідно перезавантажити ваш комп’ютер.%n%nПерезавантажити комп’ютер зараз?
@@ -293,8 +306,16 @@ ExistingFileReadOnly2=Неможливо замінити існуючий файл, оскільки він позначений 
 ExistingFileReadOnlyRetry=&Видалити атрибут "лише читання" та спробувати знову
 ExistingFileReadOnlyKeepExisting=&Залишити існуючий файл
 ErrorReadingExistingDest=Виникла помилка при спробі читання існуючого файлу:
-FileExists=Файл вже існує.%n%nПерезаписати його?
-ExistingFileNewer=Існуючий файл новіший, чим встановлюваний. Рекомендується зберегти існуючий файл.%n%nВи бажаєте зберегти існуючий файл?
+FileExistsSelectAction=Виберіть дію
+FileExists2=Файл вже існує.
+FileExistsOverwriteExisting=&Замінити існуючий файл
+FileExistsKeepExisting=&Зберегти існуючий файл
+FileExistsOverwriteOrKeepAll=&Повторити дію для всіх подальших конфліктів
+ExistingFileNewerSelectAction=Виберіть дію
+ExistingFileNewer2=Існуючий файл новіший, ніж встановлюваємий.
+ExistingFileNewerOverwriteExisting=&Замінити існуючий файл
+ExistingFileNewerKeepExisting=&Зберегти існуючий файл (рекомендується)
+ExistingFileNewerOverwriteOrKeepAll=&Повторити дію для всіх подальших конфліктів
 ErrorChangingAttr=Виникла помилка при спробі зміни атрибутів існуючого файлу:
 ErrorCreatingTemp=Виникла помилка при спробі створення файлу в папці встановлення:
 ErrorReadingSource=Виникла помилка при спробі читання вихідного файлу:
@@ -328,7 +349,7 @@ UninstallOnlyOnWin64=Цю програму можливо видалити лише у середовищі 64-бітної ве
 OnlyAdminCanUninstall=Ця програма може бути видалена лише користувачем з правами адміністратора.
 UninstallStatusLabel=Будь ласка, зачекайте, поки %1 видалиться з вашого комп'ютера.
 UninstalledAll=%1 успішно видалено з вашого комп'ютера.
-UninstalledMost=Видалення %1 закінчено.%n%nДеякі елемент неможливо видалити. Ви можете видалити їх вручну.
+UninstalledMost=Видалення %1 завершено.%n%nДеякі елемент неможливо видалити. Ви можете видалити їх вручну.
 UninstalledAndNeedsRestart=Для завершення видалення %1 необхідно перезавантажити ваш комп’ютер.%n%nПерезавантажити комп’ютер зараз?
 UninstallDataCorrupted=Файл "%1" пошкоджений. Видалення неможливе
 
@@ -339,6 +360,7 @@ SharedFileNameLabel=Ім'я файлу:
 SharedFileLocationLabel=Розміщення:
 WizardUninstalling=Стан видалення
 StatusUninstalling=Видалення %1...
+
 
 ; *** Причини блокування вимкнення
 ShutdownBlockReasonInstallingApp=Встановлення %1.

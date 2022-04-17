@@ -1,4 +1,4 @@
-; *** Inno Setup version 6.0.0+ Japanese messages ***
+; *** Inno Setup version 6.1.0+ Japanese messages ***
 ;
 ; Maintained by Koichi Shirasuka (shirasuka@eugrid.co.jp)
 ;
@@ -136,6 +136,7 @@ WizardSelectDir=ƒCƒ“ƒXƒg[ƒ‹æ‚Ìw’è
 SelectDirDesc=[name] ‚ÌƒCƒ“ƒXƒg[ƒ‹æ‚ğw’è‚µ‚Ä‚­‚¾‚³‚¢B
 SelectDirLabel3=[name] ‚ğƒCƒ“ƒXƒg[ƒ‹‚·‚éƒtƒHƒ‹ƒ_‚ğw’è‚µ‚ÄAuŸ‚Öv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
 SelectDirBrowseLabel=‘±‚¯‚é‚É‚ÍuŸ‚Öv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B•Ê‚ÌƒtƒHƒ‹ƒ_[‚ğ‘I‘ğ‚·‚é‚É‚ÍuQÆv‚ğƒNƒŠƒbƒN‚µ‚Ä‚­‚¾‚³‚¢B
+DiskSpaceGBLabel=‚±‚ÌƒvƒƒOƒ‰ƒ€‚ÍÅ’á [gb] GB ‚ÌƒfƒBƒXƒN‹ó‚«—Ìˆæ‚ğ•K—v‚Æ‚µ‚Ü‚·B
 DiskSpaceMBLabel=‚±‚ÌƒvƒƒOƒ‰ƒ€‚ÍÅ’á [mb] MB ‚ÌƒfƒBƒXƒN‹ó‚«—Ìˆæ‚ğ•K—v‚Æ‚µ‚Ü‚·B
 CannotInstallToNetworkDrive=ƒlƒbƒgƒ[ƒNƒhƒ‰ƒCƒu‚ÉƒCƒ“ƒXƒg[ƒ‹‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
 CannotInstallToUNCPath=UNC ƒpƒX‚ÉƒCƒ“ƒXƒg[ƒ‹‚·‚é‚±‚Æ‚Í‚Å‚«‚Ü‚¹‚ñB
@@ -163,6 +164,7 @@ NoUninstallWarningTitle=Šù‘¶‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg
 NoUninstallWarning=ƒZƒbƒgƒAƒbƒv‚ÍˆÈ‰º‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚ªŠù‚ÉƒCƒ“ƒXƒg[ƒ‹‚³‚ê‚Ä‚¢‚é‚±‚Æ‚ğŒŸo‚µ‚Ü‚µ‚½B%n%n%1%n%n‚±‚ê‚ç‚ÌƒRƒ“ƒ|[ƒlƒ“ƒg‚Ì‘I‘ğ‚ğ‰ğœ‚µ‚Ä‚àƒAƒ“ƒCƒ“ƒXƒg[ƒ‹‚Í‚³‚ê‚Ü‚¹‚ñB%n%n‚±‚Ì‚Ü‚Ü‘±s‚µ‚Ü‚·‚©H
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
+ComponentsDiskSpaceGBLabel=Œ»İ‚Ì‘I‘ğ‚ÍÅ’á [gb] GB ‚ÌƒfƒBƒXƒN‹ó‚«—Ìˆæ‚ğ•K—v‚Æ‚µ‚Ü‚·B
 ComponentsDiskSpaceMBLabel=Œ»İ‚Ì‘I‘ğ‚ÍÅ’á [mb] MB ‚ÌƒfƒBƒXƒN‹ó‚«—Ìˆæ‚ğ•K—v‚Æ‚µ‚Ü‚·B
 
 ; *** "Select Additional Tasks" wizard page
@@ -193,6 +195,18 @@ ReadyMemoComponents=‘I‘ğƒRƒ“ƒ|[ƒlƒ“ƒg:
 ReadyMemoGroup=ƒXƒ^[ƒgƒƒjƒ…[ƒtƒHƒ‹ƒ_[:
 ReadyMemoTasks=’Ç‰Áƒ^ƒXƒNˆê——:
 
+; *** TDownloadWizardPage wizard page and DownloadTemporaryFile
+DownloadingLabel=’Ç‰Á‚Ìƒtƒ@ƒCƒ‹‚ğƒ_ƒEƒ“ƒ[ƒh‚µ‚Ä‚¢‚Ü‚·...
+ButtonStopDownload=ƒ_ƒEƒ“ƒ[ƒh‚ğ’†~(&S)
+StopDownload=ƒ_ƒEƒ“ƒ[ƒh‚ğ’†~‚µ‚Ä‚à‚æ‚ë‚µ‚¢‚Å‚·‚©H
+ErrorDownloadAborted=ƒ_ƒEƒ“ƒ[ƒh‚ğ’†~‚µ‚Ü‚µ‚½
+ErrorDownloadFailed=ƒ_ƒEƒ“ƒ[ƒh‚É¸”s‚µ‚Ü‚µ‚½: %1 %2
+ErrorDownloadSizeFailed=ƒTƒCƒY‚Ìæ“¾‚É¸”s‚µ‚Ü‚µ‚½: %1 %2
+ErrorFileHash1=ƒtƒ@ƒCƒ‹‚ÌƒnƒbƒVƒ…‚É¸”s‚µ‚Ü‚µ‚½: %1
+ErrorFileHash2=–³Œø‚Èƒtƒ@ƒCƒ‹ƒnƒbƒVƒ…: —\Šú‚³‚ê‚½’l %1, ÀÛ‚Ì’l %2
+ErrorProgress=–³Œø‚Èisó‹µ: %1 / %2
+ErrorFileSize=–³Œø‚Èƒtƒ@ƒCƒ‹ƒTƒCƒY: —\Šú‚³‚ê‚½’l %1, ÀÛ‚Ì’l %2
+
 ; *** "Preparing to Install" wizard page
 WizardPreparing=ƒCƒ“ƒXƒg[ƒ‹€”õ’†
 PreparingDesc=‚²g—p‚ÌƒRƒ“ƒsƒ…[ƒ^[‚Ö [name] ‚ğƒCƒ“ƒXƒg[ƒ‹‚·‚é€”õ‚ğ‚µ‚Ä‚¢‚Ü‚·B
@@ -203,6 +217,7 @@ ApplicationsFound2=ˆÈ‰º‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ªƒZƒbƒgƒAƒbƒv‚É•K—v‚Èƒtƒ@ƒCƒ‹‚ğg—p‚µ‚
 CloseApplications=©“®“I‚ÉƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğI—¹‚·‚é(&A)
 DontCloseApplications=ƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğI—¹‚µ‚È‚¢(&D)
 ErrorCloseApplications=ƒZƒbƒgƒAƒbƒv‚Í‚·‚×‚Ä‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğ©“®“I‚ÉI—¹‚·‚é‚±‚Æ‚ª‚Å‚«‚Ü‚¹‚ñ‚Å‚µ‚½BƒZƒbƒgƒAƒbƒv‚ğ‘±s‚·‚é‘O‚ÉAXV‚Ì•K—v‚Èƒtƒ@ƒCƒ‹‚ğg—p‚µ‚Ä‚¢‚é‚·‚×‚Ä‚ÌƒAƒvƒŠƒP[ƒVƒ‡ƒ“‚ğI—¹‚·‚é‚±‚Æ‚ğ„§‚µ‚Ü‚·B
+PrepareToInstallNeedsRestart=ƒZƒbƒgƒAƒbƒv‚ÍƒRƒ“ƒsƒ…[ƒ^[‚ğÄ‹N“®‚·‚é•K—v‚ª‚ ‚è‚Ü‚·BƒRƒ“ƒsƒ…[ƒ^[‚ğÄ‹N“®‚µ‚½ŒãAƒZƒbƒgƒAƒbƒv‚ğÄ“xÀs‚µ‚Ä [name] ‚ÌƒCƒ“ƒXƒg[ƒ‹‚ğŠ®—¹‚µ‚Ä‚­‚¾‚³‚¢B%n%n‚·‚®‚ÉÄ‹N“®‚µ‚Ü‚·‚©H?
 
 ; *** "Installing" wizard page
 WizardInstalling=ƒCƒ“ƒXƒg[ƒ‹ó‹µ
@@ -274,8 +289,16 @@ ExistingFileReadOnly2=Šù‘¶‚Ìƒtƒ@ƒCƒ‹‚Í“Ç‚İæ‚èê—p‚Ì‚½‚ß’u‚«Š·‚¦‚Å‚«‚Ü‚¹‚ñB
 ExistingFileReadOnlyRetry=“Ç‚İæ‚èê—p‘®«‚ğ‰ğœ‚µ‚Ä‚à‚¤ˆê“x‚â‚è‚È‚¨‚·(&R)
 ExistingFileReadOnlyKeepExisting=Šù‘¶‚Ìƒtƒ@ƒCƒ‹‚ğc‚·(&K)
 ErrorReadingExistingDest=Šù‘¶‚Ìƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½:
-FileExists=ƒtƒ@ƒCƒ‹‚ÍŠù‚É‘¶İ‚µ‚Ü‚·B%n%nã‘‚«‚µ‚Ü‚·‚©H
-ExistingFileNewer=ƒCƒ“ƒXƒg[ƒ‹‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚éƒtƒ@ƒCƒ‹‚æ‚è‚àV‚µ‚¢ƒtƒ@ƒCƒ‹‚ª‘¶İ‚µ‚Ü‚·BŠù‘¶‚Ìƒtƒ@ƒCƒ‹‚ğc‚·‚±‚Æ‚ğ‚¨§‚ß‚µ‚Ü‚·B%n%nŠù‘¶‚Ìƒtƒ@ƒCƒ‹‚ğc‚µ‚Ü‚·‚©H
+FileExistsSelectAction=ƒAƒNƒVƒ‡ƒ“‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢
+FileExists2=ƒtƒ@ƒCƒ‹‚ÍŠù‚É‘¶İ‚µ‚Ü‚·B
+FileExistsOverwriteExisting=Šù‘¶‚Ìƒtƒ@ƒCƒ‹‚ğã‘‚«‚·‚é(&O)
+FileExistsKeepExisting=Šù‘¶‚Ìƒtƒ@ƒCƒ‹‚ğˆÛ‚·‚é(&K)
+FileExistsOverwriteOrKeepAll=ˆÈ~‚Ì‹£‡‚É“¯‚¶ˆ—‚ğs‚¤(&D)
+ExistingFileNewerSelectAction=ƒAƒNƒVƒ‡ƒ“‚ğ‘I‘ğ‚µ‚Ä‚­‚¾‚³‚¢
+ExistingFileNewer2=ƒZƒbƒgƒAƒbƒv‚ªƒCƒ“ƒXƒg[ƒ‹‚µ‚æ‚¤‚Æ‚µ‚Ä‚¢‚é‚à‚Ì‚æ‚è‚àV‚µ‚¢ƒtƒ@ƒCƒ‹‚ª‚ ‚è‚Ü‚·B
+ExistingFileNewerOverwriteExisting=Šù‘¶‚Ìƒtƒ@ƒCƒ‹‚ğã‘‚«‚·‚é(&O)
+ExistingFileNewerKeepExisting=Šù‘¶‚Ìƒtƒ@ƒCƒ‹‚ğˆÛ‚·‚é(&K) („§)
+ExistingFileNewerOverwriteOrKeepAll=ˆÈ~‚Ì‹£‡‚É“¯‚¶ˆ—‚ğs‚¤(&D)
 ErrorChangingAttr=Šù‘¶ƒtƒ@ƒCƒ‹‚Ì‘®«‚ğ•ÏX’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½:
 ErrorCreatingTemp=ƒRƒs[æ‚ÌƒtƒHƒ‹ƒ_[‚Éƒtƒ@ƒCƒ‹‚ğì¬’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½:
 ErrorReadingSource=ƒRƒs[Œ³‚Ìƒtƒ@ƒCƒ‹‚ğ“Ç‚İ‚İ’†‚ÉƒGƒ‰[‚ª”­¶‚µ‚Ü‚µ‚½:

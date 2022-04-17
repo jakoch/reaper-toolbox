@@ -1,11 +1,14 @@
-; *** Inno Setup version 6.0.0+ Norwegian (bokmål) messages ***
+; *** Inno Setup version 6.1.0+ Norwegian (bokmål) messages ***
+;
+; To download user-contributed translations of this file, go to:
+;   https://jrsoftware.org/files/istrans/
 ;
 ; Note: When translating this text, do not add periods (.) to the end of
 ; messages that didn't have them already, because on those messages Inno
 ; Setup adds the periods automatically (appending a period would result in
 ; two periods being displayed).
 ;
-; Norwegian translation by Eivind Bakkestuen
+; Norwegian translation currently maintained by Eivind Bakkestuen
 ; E-mail: eivind.bakkestuen@gmail.com
 ; Many thanks to the following people for language improvements and comments:
 ;
@@ -144,6 +147,7 @@ WizardSelectDir=Velg mappen hvor filene skal installeres:
 SelectDirDesc=Hvor skal [name] installeres?
 SelectDirLabel3=Installasjonsprogrammet vil installere [name] i følgende mappe.
 SelectDirBrowseLabel=Klikk på Neste for å fortsette. Klikk på Bla gjennom hvis du vil velge en annen mappe.
+DiskSpaceGBLabel=Programmet krever minst [gb] GB med diskplass.
 DiskSpaceMBLabel=Programmet krever minst [mb] MB med diskplass.
 CannotInstallToNetworkDrive=Kan ikke installere på en nettverksstasjon.
 CannotInstallToUNCPath=Kan ikke installere på en UNC-bane. Du må tilordne nettverksstasjonen hvis du vil installere i et nettverk.
@@ -171,6 +175,7 @@ NoUninstallWarningTitle=Komponenter eksisterer
 NoUninstallWarning=Installasjonsprogrammet har funnet ut at følgende komponenter allerede er på din maskin:%n%n%1%n%nDisse komponentene avinstalleres ikke selv om du ikke velger dem.%n%nVil du likevel fortsette?
 ComponentSize1=%1 KB
 ComponentSize2=%1 MB
+ComponentsDiskSpaceGBLabel=Valgte alternativer krever minst [gb] GB med diskplass.
 ComponentsDiskSpaceMBLabel=Valgte alternativer krever minst [mb] MB med diskplass.
 
 ; *** "Select Additional Tasks" wizard page
@@ -201,6 +206,18 @@ ReadyMemoComponents=Valgte komponenter:
 ReadyMemoGroup=Programgruppe:
 ReadyMemoTasks=Tilleggsoppgaver:
 
+; *** TDownloadWizardPage wizard page and DownloadTemporaryFile
+DownloadingLabel=Laster ned ekstra filer...
+ButtonStopDownload=&Stopp nedlasting
+StopDownload=Er du sikker på at du vil stoppe nedlastingen?
+ErrorDownloadAborted=Nedlasting avbrutt
+ErrorDownloadFailed=Nedlasting feilet: %1 %2
+ErrorDownloadSizeFailed=Kunne ikke finne filstørrelse: %1 %2
+ErrorFileHash1=Fil hash verdi feilet: %1
+ErrorFileHash2=Ugyldig fil hash verdi: forventet %1, fant %2
+ErrorProgress=Ugyldig fremdrift: %1 of %2
+ErrorFileSize=Ugyldig fil størrelse: forventet %1, fant %2
+
 ; *** "Preparing to Install" wizard page
 WizardPreparing=Forbereder installasjonen
 PreparingDesc=Installasjonsprogrammet forbereder installasjon av [name] på den maskin.
@@ -211,6 +228,7 @@ ApplicationsFound2=Disse applikasjonene bruker filer som vil oppdateres av insta
 CloseApplications=Lukk applikasjonene &automatisk
 DontCloseApplications=&Ikke lukk applikasjonene
 ErrorCloseApplications=Installasjonsprogrammet kunne ikke lukke alle applikasjonene &automatisk. Det anbefales å lukke alle applikasjoner som bruker filer som installasjonsprogrammet trenger å oppdatere før du fortsetter installasjonen.
+PrepareToInstallNeedsRestart=Installasjonsprogrammet må gjøre omstart av maskinen. Etter omstart av maskinen, kjør installasjonsprogrammet på nytt for å ferdigstille installasjonen av [name].%n%nVil du gjøre omstart av maskinen nå?
 
 ; *** "Installing" wizard page
 WizardInstalling=Installerer
@@ -282,8 +300,16 @@ ExistingFileReadOnly2=Den eksisterende filen er skrivebeskyttet og kan ikke erst
 ExistingFileReadOnlyRetry=&Fjern skrivebeskyttelse og prøv igjen
 ExistingFileReadOnlyKeepExisting=&Behold eksisterende fil
 ErrorReadingExistingDest=En feil oppsto under lesing av den eksisterende filen:
-FileExists=Filen eksisterer allerede.%n%nVil du overskrive den?
-ExistingFileNewer=Den eksisterende filen er nyere enn den som blir forsøkt installert. Det anbefales at du beholder den eksisterende filen.%n%nVil du beholde den eksisterende filen?
+FileExistsSelectAction=Velg aksjon
+FileExists2=Filen eksisterer allerede.
+FileExistsOverwriteExisting=&Overskriv den eksisterende filen
+FileExistsKeepExisting=&Behold den eksisterende filen
+FileExistsOverwriteOrKeepAll=&Gjør samme valg for påfølgende konflikter
+ExistingFileNewerSelectAction=Velg aksjon
+ExistingFileNewer2=Den eksisterende filen er nyere enn filen Installasjonen prøver å installere.
+ExistingFileNewerOverwriteExisting=&Overskriv den eksisterende filen
+ExistingFileNewerKeepExisting=&Behold den eksisterende filen (anbefalt)
+ExistingFileNewerOverwriteOrKeepAll=&Gjør samme valg for påfølgende konflikter
 ErrorChangingAttr=En feil oppsto da attributtene ble forsøkt forandret på den eksisterende filen:
 ErrorCreatingTemp=En feil oppsto under forsøket på å lage en fil i mål-mappen:
 ErrorReadingSource=En feil oppsto under forsøket på å lese kildefilen:
