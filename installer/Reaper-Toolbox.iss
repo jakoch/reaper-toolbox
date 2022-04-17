@@ -128,7 +128,7 @@ Name: "{group}\Reaper (x64) User Guide"; Filename: "{app}\Docs\Reaper_User_Guide
 Name: "{group}\Reaper (x64) SWS User Guide"; Filename: "{app}\Reaper_SWS_User_Guide.pdf"; WorkingDir: "{app}"
 Name: "{group}\REAPER License and User Agreement"; Filename: "{app}\license.txt"; WorkingDir: "{app}"
 Name: "{group}\Whatsnew.txt"; Filename: "{app}\whatsnew.txt"; WorkingDir: "{app}"
-Name: "{group}\Show versions of installed software"; Filename: "{app}\reaper_toolbox_versions.txt"; WorkingDir: "{app}"
+Name: "{group}\Show software versions"; Filename: "{app}\reaper_toolbox_versions.txt"; WorkingDir: "{app}"
     
 [Registry]
 ; create file-association for ".rpp" files. this is an optional and user selectable task, see [Tasks] section.

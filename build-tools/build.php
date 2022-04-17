@@ -130,14 +130,14 @@ class Reapack_VersionGrabber extends VersionGrabber
 class Reaper_VersionGrabber extends VersionGrabber
 {
   public $name = "Reaper";
-  public $url = 'https://www.reaper.fm/download.php';
+  public $url = 'https://reaper.fm/download.php';
 
   // tested strings "Version 6.11:" | "Version 6.12c:"
   private $version_regexp = '/Version (\d+.\d+[a-z]?):/';
 
   //https://www.reaper.fm/files/5.x/reaper5981_x64-install.exe
   private $download_regexp = '/files\/(.*)x64-install.exe/';
-  private $download_url_template = 'https://www.reaper.fm/%s';
+  private $download_url_template = 'https://reaper.fm/%s';
 
   function grabVersion()
   {
@@ -165,12 +165,12 @@ class Reaper_VersionGrabber extends VersionGrabber
 class ReaperUserGuide_VersionGrabber extends VersionGrabber
 {
   public $name = "Reaper User Guide (en)";
-  public $url = 'https://www.reaper.fm/userguide.php';
+  public $url = 'https://reaper.fm/userguide.php';
 
   private $version_regexp = '/Guide(.*)\.pdf/';
 
   // https://www.reaper.fm/userguide/ReaperUserGuide5981c.pdf
-  private $download_url_template = 'https://www.reaper.fm/userguide/ReaperUserGuide%s.pdf';
+  private $download_url_template = 'https://reaper.fm/userguide/ReaperUserGuide%s.pdf';
 
   function grabVersion()
   {
@@ -195,23 +195,18 @@ class ReaperUserGuide_VersionGrabber extends VersionGrabber
 class SWSExtension_VersionGrabber extends VersionGrabber
 {
   public $name = "Extension: SWS";
-  public $url = 'http://www.sws-extension.org/';
+  public $url = 'https://sws-extension.org/';
   
-  private $version_regexp = '/v(.*)-x64-install.exe/';
-
-  // http://www.sws-extension.org/download/featured/sws-v2.10.0.1-x64-install.exe
-  private $download_regexp = '/sws-(.*)x64-install.exe/';
-  private $download_url_template = 'http://www.sws-extension.org/download/featured/%s';
+  // https://sws-extension.org/download/featured/sws-2.12.1.3-Windows-x64.exe
+  private $download_regexp = '/sws-(.*)-Windows-x64.exe/';
+  private $download_url_template = 'https://sws-extension.org/download/featured/%s';
 
   function grabVersion()
   {
     $html = $this->download($this->url);
 
-    if(preg_match($this->version_regexp, $html, $matches)) {
-      $this->latest_version = $matches[1];
-    }  
-
     if(preg_match($this->download_regexp, $html, $matches)) {
+      $this->latest_version = $matches[1];
       $this->downloads[] = sprintf($this->download_url_template, $matches[0]); 
       $this->filename = basename(sprintf($this->download_url_template, $matches[0])); 
 
@@ -229,12 +224,12 @@ class SWSExtension_VersionGrabber extends VersionGrabber
 class SWSExtensionUserGuide_VersionGrabber extends VersionGrabber
 {
   public $name = "Extension: SWS User Guide (en)";
-  public $url = 'http://www.sws-extension.org/';
+  public $url = 'https://sws-extension.org/';
   
   private $version_regexp = '/REAPERPlusSWS(.*)\.pdf/';
 
   // http://www.standingwaterstudios.com/download/REAPERPlusSWS171.pdf
-  private $download_url_template = 'http://www.sws-extension.org/download/REAPERPlusSWS%s.pdf';
+  private $download_url_template = 'https://sws-extension.org/download/REAPERPlusSWS%s.pdf';
 
   function grabVersion()
   {
