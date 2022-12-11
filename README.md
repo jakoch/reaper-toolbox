@@ -15,6 +15,10 @@ Builds are done continously on a weekly schedule using Azure Pipelines and deplo
 - [x] Grab Latest Versions
    - [x] Reaper 
        - https://www.reaper.fm/download.php
+       - Optional functionality provided by the Reaper installer:
+         - [x] ReaMote network FX processing support
+         - [x] ReWire
+         - [x] ReaRoute ASIo driver
    - [x] Reaper User Guide 
        - https://www.reaper.fm/userguide.php
    - [x] Reaper SWS 
