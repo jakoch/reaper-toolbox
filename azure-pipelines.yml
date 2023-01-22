@@ -12,6 +12,10 @@ pr: none
 pool:
   vmImage: 'windows-latest'
 
+variables:
+  _RELEASE_TAG: 'v$(Date:yyMMdd)_r$(Rev:r)'
+  _RELEASE_TITLE: 'Reaper Toolbox v$(Date:yyMMdd)_r$(Rev:r)'
+
 steps:
   - task: CmdLine@2
     displayName: 'Set Version Number vars'
@@ -50,8 +54,8 @@ steps:
       githubConnection: 'github.com_jakoch'
       repositoryName: '$(Build.Repository.Name)'
       action: 'create'
-      tag: 'v$(Date:yyMMdd)_r$(Rev:r)'
-      title: 'Reaper Toolbox v$(Date:yyMMdd)_r$(Rev:r)'
+      tag: $(_RELEASE_TAG)
+      title: $(_RELEASE_TITLE)
       target: '$(Build.SourceVersion)'
       tagSource: 'userSpecifiedTag'
       releaseNotesFilePath: 'release_notes.md'
