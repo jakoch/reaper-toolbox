@@ -24,6 +24,7 @@ steps:
         echo ##vso[task.setvariable variable=GIT_BRANCH]$(Build.SourceBranchName)
         echo ##vso[task.setvariable variable=APP_BUILD_VERSION]dev-$(GIT_COMMIT_HASH_SHORT)
       workingDirectory: '$(Build.SourcesDirectory)'
+      
   - bash: |
        echo $GIT_COMMIT_HASH_SHORT
        echo $GIT_BRANCH
@@ -31,34 +32,36 @@ steps:
     displayName: Show APP_BUILD_VERSION
 
   - script: build-tools\php\php.exe build-tools\build.php
-    displayName: Download Components
+    displayName: 🔽 Download Components
 
   - script: |
       ls -lhs downloads
       ls -lhs build-tools
       ls -lhs .
-    displayName: List Downloads
+    displayName: ℹ List Downloads
 
   - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
-    displayName: Compile Installer
-
+    displayName: 🙏 Compile Installer
+  
+  # https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/github-release-v1
   - task: GitHubRelease@1
+    displayName: 📢 Add Github Release
     inputs:
       githubConnection: 'github.com_jakoch'
       repositoryName: '$(Build.Repository.Name)'
       action: 'create'
-      tag: '$(Build.BuildNumber)'
+      tag: 'v$(Date:yyMMdd)_r$(Rev:r)'
+      title: 'Reaper Toolbox v$(Date:yyMMdd)_r$(Rev:r)'
       target: '$(Build.SourceVersion)'
       tagSource: 'userSpecifiedTag'
       releaseNotesFilePath: 'release_notes.md'
       assets: 'release/Reaper-Toolbox*.exe'
       changeLogCompareToRelease: 'lastFullRelease'
       changeLogType: 'commitBased'
-    displayName: Add Github Release
       
 schedules:
  - cron: "0 12 * * 0"
-   displayName: Build Weekly@Sunday
+   displayName: ⚙ Build Weekly@Sunday
    branches:
     include:
     - main
