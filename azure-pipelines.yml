@@ -1,6 +1,6 @@
 # Azure Pipelines
 
-name: "Reaper-Toolbox_v$(Date:yyMMdd)_r$(Rev:r)"
+name: "v$(Date:yyMMdd)_r$(Rev:r)"
 
 # run pipeline build, when main branch changes
 trigger:
@@ -12,11 +12,11 @@ pr: none
 pool:
   vmImage: 'windows-latest'
 
-variables:
-  _RELEASE_TAG: "v$(Date:yyMMdd)_r$(Rev:r)"
-  _RELEASE_TITLE: "Reaper Toolbox v$(Date:yyMMdd)_r$(Rev:r)"
-
 steps:
+  - checkout: self
+    fetchDepth: 1
+    displayName: 🤘 Checkout Code
+
   - task: CmdLine@2
     displayName: 'Set Version Number vars'
     inputs:
@@ -54,8 +54,8 @@ steps:
       githubConnection: 'github.com_jakoch'
       repositoryName: '$(Build.Repository.Name)'
       action: 'create'
-      tag: '$(_RELEASE_TAG)'
-      title: '$(_RELEASE_TITLE)'
+      tag: '$(Build.BuildNumber)'
+      title: 'Reaper-Toolbox $(Build.BuildNumber)'
       target: '$(Build.SourceVersion)'
       tagSource: 'userSpecifiedTag'
       releaseNotesFilePath: 'release_notes.md'
