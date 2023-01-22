@@ -13,8 +13,8 @@ pool:
   vmImage: 'windows-latest'
 
 variables:
-  _RELEASE_TAG: 'v$(Date:yyMMdd)_r$(Rev:r)'
-  _RELEASE_TITLE: 'Reaper Toolbox v$(Date:yyMMdd)_r$(Rev:r)'
+  _RELEASE_TAG: "v$(Date:yyMMdd)_r$(Rev:r)"
+  _RELEASE_TITLE: "Reaper Toolbox v$(Date:yyMMdd)_r$(Rev:r)"
 
 steps:
   - task: CmdLine@2
