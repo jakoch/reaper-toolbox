@@ -48,10 +48,11 @@ class DownloadUtil
   {
     $opts = [
       'http' =>[
-        'user_agent' => 'Reaper-Toolbox-Installer-Build-Script (https://github.com/jakoch/reaper-toolbox/)',
+        //'user_agent' => 'Reaper-Toolbox-Installer-Build-Script (https://github.com/jakoch/reaper-toolbox/)',
+        'user_agent' => 'Mozilla/5.0 (Windows NT 6.3; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/37.0.2049.0 Safari/537.36',
         'method' => 'GET',
         'header' => implode("\r\n", ['Content-type: text/plain;']),
-        'timeout' => 15,
+        'timeout' => 20,
       ]
     ];
 
@@ -60,7 +61,7 @@ class DownloadUtil
     return $this->downloadFileWithRetry($url, $context);
   }
 
-  function downloadFileWithRetry($url, $context, $retries = 3)
+  function downloadFileWithRetry($url, $context, $retries = 5)
   {
     $attempt = 1;
     $content = false;
@@ -70,7 +71,7 @@ class DownloadUtil
         $content = file_get_contents($url, false, $context);
 
         if ($content === false) {
-            sleep(2); // Wait for 2 second before retrying
+            sleep(5); // Wait 5 seconds before retrying
             $attempt++;
         }
     }
