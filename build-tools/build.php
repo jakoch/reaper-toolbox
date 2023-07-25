@@ -57,7 +57,30 @@ class DownloadUtil
 
     $context = stream_context_create($opts);
 
-    return file_get_contents($url, false, $context);
+    return $this->downloadFileWithRetry($url, $context);
+  }
+
+  function downloadFileWithRetry($url, $context, $retries = 3)
+  {
+    $attempt = 1;
+    $content = false;
+
+    while ($attempt <= $retries && !$content)
+    {
+        $content = file_get_contents($url, false, $context);
+
+        if ($content === false) {
+            sleep(2); // Wait for 2 second before retrying
+            $attempt++;
+        }
+    }
+
+    // check filesize
+    if (strlen($content) === 0) {
+        die("Downloaded failed. Filesize is 0.");
+    }
+
+    return $content;
   }
 }
 
@@ -121,10 +144,10 @@ class Reapack_VersionGrabber extends VersionGrabber
 
     function getInstallCommand()
     {
-    $install_cmd_template = "RenameFile(ExpandConstant('{tmp}\\reaper_reapack64.dll'), ExpandConstant('{app}\UserPlugins\\reaper_reapack64.dll'));";
+      $install_cmd_template = "RenameFile(ExpandConstant('{tmp}\\reaper_reapack64.dll'), ExpandConstant('{app}\UserPlugins\\reaper_reapack64.dll'));";
 
-    return $install_cmd_template;
-  }
+      return $install_cmd_template;
+    }
 }
 
 class Reaper_VersionGrabber extends VersionGrabber
