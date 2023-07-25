@@ -51,7 +51,7 @@ class DownloadUtil
         'user_agent' => 'Reaper-Toolbox-Installer-Build-Script (https://github.com/jakoch/reaper-toolbox/)',
         'method' => 'GET',
         'header' => implode("\r\n", ['Content-type: text/plain;']),
-        'timeout' => 5,
+        'timeout' => 15,
       ]
     ];
 
@@ -97,11 +97,11 @@ class VersionGrabber extends DownloadUtil
     $json = $this->download($url);
 
     return json_decode($json, 1);
-  }  
-  
+  }
+
   function getDownloads()
   {
-    return $this->downloads;  
+    return $this->downloads;
   }
   function getLatestVersion()
   {
@@ -124,7 +124,7 @@ class VersionGrabber extends DownloadUtil
 class Reapack_VersionGrabber extends VersionGrabber
 {
     public $name = "Extension: Reapack";
-    public $url = 'https://github.com/repos/cfillion/reapack'; 
+    public $url = 'https://github.com/repos/cfillion/reapack';
     public $api_url = 'https://api.github.com/repos/cfillion/reapack/releases/latest';
 
     function grabVersion()
@@ -135,10 +135,10 @@ class Reapack_VersionGrabber extends VersionGrabber
 
       foreach($data['assets'] as $asset)
       {
-        if(Strings::endsWith($asset['browser_download_url'], '64.dll')) { 
+        if(Strings::endsWith($asset['browser_download_url'], '64.dll')) {
           $this->downloads[] = $asset['browser_download_url'];
           $this->filename = basename($asset['browser_download_url']);
-        }        
+        }
       }
     }
 
@@ -168,13 +168,13 @@ class Reaper_VersionGrabber extends VersionGrabber
 
     if(preg_match($this->version_regexp, $html, $matches)) {
       $this->latest_version = $matches[1];
-    }  
+    }
 
     if(preg_match($this->download_regexp, $html, $matches)) {
-      $url = sprintf($this->download_url_template, $matches[0]); 
+      $url = sprintf($this->download_url_template, $matches[0]);
       $this->downloads[] = $url;
-      $this->filename = basename($url);    
-    }  
+      $this->filename = basename($url);
+    }
   }
 
   function getInstallCommand()
@@ -201,8 +201,8 @@ class ReaperUserGuide_VersionGrabber extends VersionGrabber
 
     if(preg_match($this->version_regexp, $html, $matches)) {
       $this->latest_version = $matches[1];
-    }  
-    
+    }
+
     $this->downloads[] = sprintf($this->download_url_template, $this->latest_version);
     $this->filename = basename(sprintf($this->download_url_template, $this->latest_version));
   }
@@ -219,7 +219,7 @@ class SWSExtension_VersionGrabber extends VersionGrabber
 {
   public $name = "Extension: SWS";
   public $url = 'https://sws-extension.org/';
-  
+
   // https://sws-extension.org/download/featured/sws-2.12.1.3-Windows-x64.exe
   private $download_regexp = '/sws-(.*)-Windows-x64.exe/';
   private $download_url_template = 'https://sws-extension.org/download/featured/%s';
@@ -230,10 +230,10 @@ class SWSExtension_VersionGrabber extends VersionGrabber
 
     if(preg_match($this->download_regexp, $html, $matches)) {
       $this->latest_version = $matches[1];
-      $this->downloads[] = sprintf($this->download_url_template, $matches[0]); 
-      $this->filename = basename(sprintf($this->download_url_template, $matches[0])); 
+      $this->downloads[] = sprintf($this->download_url_template, $matches[0]);
+      $this->filename = basename(sprintf($this->download_url_template, $matches[0]));
 
-    }  
+    }
   }
 
   function getInstallCommand()
@@ -248,7 +248,7 @@ class SWSExtensionUserGuide_VersionGrabber extends VersionGrabber
 {
   public $name = "Extension: SWS User Guide (en)";
   public $url = 'https://sws-extension.org/';
-  
+
   private $version_regexp = '/REAPERPlusSWS(.*)\.pdf/';
 
   // http://www.standingwaterstudios.com/download/REAPERPlusSWS171.pdf
@@ -260,9 +260,9 @@ class SWSExtensionUserGuide_VersionGrabber extends VersionGrabber
 
     if(preg_match($this->version_regexp, $html, $matches)) {
       $this->latest_version = $matches[1];
-    }  
-   
-    $this->downloads[] = sprintf($this->download_url_template, $this->latest_version); 
+    }
+
+    $this->downloads[] = sprintf($this->download_url_template, $this->latest_version);
     $this->filename =  basename(sprintf($this->download_url_template, $this->latest_version));
   }
 
@@ -284,17 +284,17 @@ class VersionDisplay
   }
   function printVersionTable()
   {
-    $template = "| %-30.30s | %-9.9s | %-42.42s |" . PHP_EOL;  
-    // header 
-    $out = sprintf($template, 'Component', 'Version', 'URL'); 
+    $template = "| %-30.30s | %-9.9s | %-42.42s |" . PHP_EOL;
+    // header
+    $out = sprintf($template, 'Component', 'Version', 'URL');
     // line separator
     $out .= sprintf($template, '------------------------------', '---------', '-----------------------------------------');
     // rows
     foreach($this->grabbers as $grabber) {
       $out .= sprintf(
-        $template, 
-        $grabber->getName(),  
-        $grabber->getLatestVersion(), 
+        $template,
+        $grabber->getName(),
+        $grabber->getLatestVersion(),
         $grabber->getUrl()
       );
     }
@@ -302,20 +302,20 @@ class VersionDisplay
   }
   function printReleaseDescription()
   {
-    $template = "%s %s\n"; 
-    $out = '';    
+    $template = "%s %s\n";
+    $out = '';
     foreach($this->grabbers as $grabber) {
       $out .= sprintf(
-        $template, 
-        $grabber->getName(),  
+        $template,
+        $grabber->getName(),
         $grabber->getLatestVersion()
       );
-    }   
+    }
     return $out;
   }
   function writeFile() {
     $file = Paths::getDownloadFolder().'reaper_toolbox_versions.txt';
-    
+
     if(!file_exists($file)) {
       file_put_contents($file, $this->printVersionTable());
     }
@@ -326,10 +326,10 @@ class VersionDisplay
     file_put_contents($file2, "@echo off \nset RELEASE_DESCRIPTION=$desc");
     //exec('cmd.exe /c '. $file2);
     //unlink($file2);
-    
+
     // Note: this approach is used to set the Github Release Notes on Azure-Pipelines
     $file3 = __DIR__ . '/../release_notes.md';
-    file_put_contents($file3, $desc);    
+    file_put_contents($file3, $desc);
   }
 }
 
@@ -353,17 +353,17 @@ class Downloader extends DownloadUtil
 
     foreach($this->downloads as $downloadUrl) {
       $this->downloadFile($downloadUrl);
-    } 
+    }
   }
 
   function downloadFile($url)
   {
     $file = Paths::getDownloadFolder() . basename($url);
-    
+
     if(!file_exists($file)) {
       file_put_contents($file, $this->download($url));
     }
-  }  
+  }
 }
 
 class InnosetupGenerator
@@ -441,16 +441,16 @@ class Application
   }
 
   function exec()
-  {    
+  {
     $this->setVersionGrabber(new Reaper_VersionGrabber);
-    $this->setVersionGrabber(new ReaperUserGuide_VersionGrabber); 
+    $this->setVersionGrabber(new ReaperUserGuide_VersionGrabber);
     $this->setVersionGrabber(new SWSExtension_VersionGrabber);
     $this->setVersionGrabber(new SWSExtensionUserGuide_VersionGrabber);
-    $this->setVersionGrabber(new Reapack_VersionGrabber); 
+    $this->setVersionGrabber(new Reapack_VersionGrabber);
 
     foreach($this->grabbers as $grabber)
     {
-      $grabber->grabVersion();      
+      $grabber->grabVersion();
       $this->downloader->setDownloads($grabber->getDownloads());
       $this->versionsDisplay->setVersionGrabber($grabber);
       $this->innosetupGenerator->setVersionGrabber($grabber);
