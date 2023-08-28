@@ -24,4 +24,4 @@ jobs:
         uses: nikhilbadyal/ghaction-rm-releases@v0.0.2 # https://github.com/nikhilbadyal/ghaction-rm-releases
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_PATTERN: 'Draft'
+          RELEASE_PATTERN: 'Reaper-Toolbox v23'
