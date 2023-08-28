@@ -19,8 +19,9 @@ jobs:
       - name: 🤘 Checkout Code
         uses: actions/checkout@v3 # https://github.com/actions/checkout
 
+      # 'Reaper-Toolbox_v23'
       - name: ✂ Release-Cleanup 20
         uses: nikhilbadyal/ghaction-rm-releases@v0.0.2 # https://github.com/nikhilbadyal/ghaction-rm-releases
         with:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          RELEASE_PATTERN: 'Reaper-Toolbox_v23'
+          RELEASE_PATTERN: 'Draft'
