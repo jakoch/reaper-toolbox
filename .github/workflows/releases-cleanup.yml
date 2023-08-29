@@ -30,7 +30,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with: 
-          name: 'Draft'
           types: 'draft,prerelease,release'
-          keep: '0'
+          keep: '3'
           
