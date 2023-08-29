@@ -31,6 +31,6 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with: 
           name: 'Reaper-Toolbox v23'
-          types: 'draft, prerelease, release'
+          types: 'draft,prerelease,release'
           keep: '3'
           
