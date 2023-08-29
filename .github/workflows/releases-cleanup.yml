@@ -30,7 +30,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
         with: 
-          name: 'Reaper-Toolbox v23'
+          name: 'Draft'
           types: 'draft,prerelease,release'
-          keep: '3'
+          keep: '0'
           
