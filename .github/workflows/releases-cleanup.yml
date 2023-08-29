@@ -1,0 +1,36 @@
+name: Release-Cleanup
+
+on:
+  # You can manually run this workflow.
+  workflow_dispatch:
+
+jobs:
+
+# ---------------------------------------------------------------------------------------
+
+  release-cleanup:
+
+# ---------------------------------------------------------------------------------------
+
+    name: "Release Cleanup"
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: 🤘 Checkout Code
+        uses: actions/checkout@v3 # https://github.com/actions/checkout
+
+      #- name: ✂ Release-Cleanup
+      #  uses: nikhilbadyal/ghaction-rm-releases@v0.0.2 # https://github.com/nikhilbadyal/ghaction-rm-releases
+      #  with:
+      #    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      #    RELEASE_PATTERN: 'Reaper-Toolbox v23'
+
+      - name: ✂ Release-Cleanup
+        uses: alfameCom/delete-releases@v1 # https://github.com/alfameCom/delete-releases        
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        with: 
+          name: 'Reaper-Toolbox v23'
+          types: 'draft, prerelease, release'
+          keep: '3'
+          
