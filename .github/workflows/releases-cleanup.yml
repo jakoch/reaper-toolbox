@@ -1,4 +1,4 @@
-name: Release-Cleanup
+name: Cleanup Releases
 
 on:
   # You can manually run this workflow.
