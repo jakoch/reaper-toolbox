@@ -17,7 +17,7 @@ jobs:
 
     steps:
       - name: 🤘 Checkout Code
-        uses: actions/checkout@v3 # https://github.com/actions/checkout
+        uses: actions/checkout@v5 # https://github.com/actions/checkout
 
       - name: ✂ Releases-Cleanup
         uses: alfameCom/delete-releases@v1 # https://github.com/alfameCom/delete-releases        
