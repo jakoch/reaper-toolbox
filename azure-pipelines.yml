@@ -21,16 +21,16 @@ steps:
     displayName: 🤘 Checkout Code
 
   - task: CmdLine@2
-    displayName: "Set Version Number vars"
+    displayName: 'Set Version Number vars'
     inputs:
       script: |
-        SETLOCAL EnableDelayed Expansion
+        SETLOCAL EnableDelayedExpansion
         FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse --short HEAD`) DO (
             @echo ##vso[task.setvariable variable=GIT_COMMIT_HASH_SHORT;]%%F
         )
         echo ##vso[task.setvariable variable=GIT_BRANCH]$(Build.SourceBranchName)
         echo ##vso[task.setvariable variable=APP_BUILD_VERSION]dev-$(GIT_COMMIT_HASH_SHORT)
-      workingDirectory: "$(Build.SourcesDirectory)"
+      workingDirectory: '$(Build.SourcesDirectory)'
 
   - bash: |
       echo $GIT_COMMIT_HASH_SHORT
@@ -65,17 +65,17 @@ steps:
   - task: GitHubRelease@1
     displayName: 📢 Add Github Release
     inputs:
-      githubConnection: "github.com_jakoch"
-      repositoryName: "$(Build.Repository.Name)"
-      action: "create"
-      tag: "$(Build.BuildNumber)"
-      title: "Reaper-Toolbox $(Build.BuildNumber)"
-      target: "$(Build.SourceVersion)"
-      tagSource: "userSpecifiedTag"
-      releaseNotesFilePath: "release_notes.md"
-      assets: "release/Reaper-Toolbox*.exe"
-      changeLogCompareToRelease: "lastFullRelease"
-      changeLogType: "commitBased"
+      githubConnection: 'github.com_jakoch'
+      repositoryName: '$(Build.Repository.Name)'
+      action: 'create'
+      tag: '$(Build.BuildNumber)'
+      title: 'Reaper-Toolbox $(Build.BuildNumber)'
+      target: '$(Build.SourceVersion)'
+      tagSource: 'userSpecifiedTag'
+      releaseNotesFilePath: 'release_notes.md'
+      assets: 'release/Reaper-Toolbox*.exe'
+      changeLogCompareToRelease: 'lastFullRelease'
+      changeLogType: 'commitBased'
 
 schedules:
   - cron: "0 12 * * 0"
