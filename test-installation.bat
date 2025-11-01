@@ -15,7 +15,7 @@ rem ------------------------------
 rem      Install Reaper Toolbox
 rem ------------------------------
 
-.\release\Reaper-Toolbox-v1.0.0-x64.exe /LOG /SILENT /VERYSILENT /DIR=%INSTALL_DIR%
+.\release\Reaper-Toolbox-v1.0.0-x64.exe /SILENT /VERYSILENT /DIR=%INSTALL_DIR%
 
 :verify
 rem ------------------------------
