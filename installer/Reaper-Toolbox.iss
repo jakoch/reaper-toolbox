@@ -87,7 +87,7 @@ CreateAppDir=yes
 AppendDefaultDirName=yes
 DefaultDirName={commonpf}\Reaper
 ShowComponentSizes=no
-PrivilegesRequired=none
+PrivilegesRequired=lowest
 Uninstallable=no
 DefaultGroupName=Reaper
 
