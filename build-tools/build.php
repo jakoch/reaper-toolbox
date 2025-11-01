@@ -125,7 +125,7 @@ class VersionGrabber extends DownloadUtil
 class Reapack_VersionGrabber extends VersionGrabber
 {
     public $name = "Extension: Reapack";
-    public $url = 'https://github.com/repos/cfillion/reapack';
+    public $url = 'https://github.com/cfillion/reapack';
     public $api_url = 'https://api.github.com/repos/cfillion/reapack/releases/latest';
 
     function grabVersion()
@@ -145,9 +145,9 @@ class Reapack_VersionGrabber extends VersionGrabber
 
     function getInstallCommand()
     {
-      $install_cmd_template = "RenameFile(ExpandConstant('{tmp}\\reaper_reapack64.dll'), ExpandConstant('{app}\UserPlugins\\reaper_reapack64.dll'));";
+      $install_cmd_template = "RenameFile(ExpandConstant('{tmp}\%s'), ExpandConstant('{app}\UserPlugins\%s'));";
 
-      return $install_cmd_template;
+      return sprintf($install_cmd_template, $this->filename, $this->filename);
     }
 }
 
@@ -180,7 +180,7 @@ class Reaper_VersionGrabber extends VersionGrabber
 
   function getInstallCommand()
   {
-    $install_cmd_template = "Exec(ExpandConstant('{tmp}\%s'), '/PORTABLE /S /D=\"' + ExpandConstant('{app}') + '\"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);";
+    $install_cmd_template = "Exec(ExpandConstant('{tmp}\%s'), '/S /PORTABLE /D=\"' + ExpandConstant('{app}') + '\"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);";
 
     return sprintf($install_cmd_template, $this->filename);
   }
@@ -239,7 +239,7 @@ class SWSExtension_VersionGrabber extends VersionGrabber
 
   function getInstallCommand()
   {
-    $install_cmd_template = "Exec(ExpandConstant('{tmp}\%s'), '/PORTABLE /S /D=\"' + ExpandConstant('{app}') + '\"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);";
+    $install_cmd_template = "Exec(ExpandConstant('{tmp}\%s'), '/S /PORTABLE /D=' + ExpandConstant('{app}'), ExpandConstant('{tmp}'), SW_HIDE, ewWaitUntilTerminated, ResultCode);";
 
     return sprintf($install_cmd_template, $this->filename);
   }
@@ -406,7 +406,7 @@ class InnosetupGenerator
             // install logic part
             // - some files are copied from temp to the target folder
             // - some executables need silent installation into the target folder
-            $out.= $component->getInstallCommand();
+            $out .= $component->getInstallCommand();
             $out .= PHP_EOL;
 
             // NewLine
