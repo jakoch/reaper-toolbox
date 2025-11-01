@@ -15,9 +15,16 @@ rem ------------------------------
 rem      Install Reaper Toolbox
 rem ------------------------------
 
-for %%f in (.\release\Reaper-Toolbox-*-x64.exe) do set INSTALLER=%%f
+rem Find installer
+for /f "delims=" %%f in ('dir /b /o-d "%~dp0\release\Reaper-Toolbox-*-x64.exe"') do (
+    set INSTALLER=%%f
+    goto :found
+)
+:found
 
-%INSTALLER% /SILENT /VERYSILENT /DIR=%INSTALL_DIR%
+echo Installing "%INSTALLER%"
+
+"%~dp0release\%INSTALLER%" /SILENT /VERYSILENT /DIR=%INSTALL_DIR%
 
 :verify
 rem ------------------------------
