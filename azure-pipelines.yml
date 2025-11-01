@@ -53,8 +53,8 @@ steps:
   - script: |
       setlocal enabledelayedexpansion
       for /f "delims=" %%F in ('dir /b release\Reaper-Toolbox*.exe') do set INSTALLER=%%F
-      echo Found installer: %INSTALLER%
-      "release\%INSTALLER%" /LOG /SILENT /VERYSILENT /DIR="$(INSTALL_DIR)"
+      echo Found installer: !INSTALLER!
+      "release\!INSTALLER!" /LOG /SILENT /VERYSILENT /DIR="$(INSTALL_DIR)"
     displayName: 🚀 Test Install
 
   - script: type "$(INSTALL_DIR)\setup.log"
