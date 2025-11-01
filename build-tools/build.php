@@ -336,6 +336,8 @@ class VersionDisplay
 
 class Downloader extends DownloadUtil
 {
+  private $downloads = [];
+
   function __construct()
   {
     if(!is_dir(Paths::getDownloadFolder())) {
@@ -425,9 +427,9 @@ class InnosetupGenerator
 class Application
 {
   private $grabbers = [];
-
   protected $downloader;
   protected $versionsDisplay;
+  protected $innosetupGenerator;
 
   function __construct()
   {
