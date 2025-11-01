@@ -13,7 +13,7 @@ pool:
   vmImage: "windows-latest"
 
 variables:
-  INSTALL_DIR: $(Agent.TempDirectory)\reapertest
+  INSTALL_DIR: $(Agent.BuildDirectory)\reapertest
 
 steps:
   - checkout: self
