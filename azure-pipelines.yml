@@ -51,7 +51,9 @@ steps:
   - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
     displayName: 🙏 Compile Installer
 
-  - script: test-installation.bat
+  - script: |
+      echo Installing to %INSTALL_DIR%
+      call test-installation.bat
     displayName: ✅ Run Installation Test
     env:
       INSTALL_DIR: $(INSTALL_DIR)
