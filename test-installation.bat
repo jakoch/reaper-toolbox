@@ -15,7 +15,9 @@ rem ------------------------------
 rem      Install Reaper Toolbox
 rem ------------------------------
 
-.\release\Reaper-Toolbox-v1.0.0-x64.exe /SILENT /VERYSILENT /DIR=%INSTALL_DIR%
+for %%f in (.\release\Reaper-Toolbox-*-x64.exe) do set INSTALLER=%%f
+
+%INSTALLER% /SILENT /VERYSILENT /DIR=%INSTALL_DIR%
 
 :verify
 rem ------------------------------

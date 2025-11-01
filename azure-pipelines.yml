@@ -51,18 +51,8 @@ steps:
   - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
     displayName: 🙏 Compile Installer
 
-  - powershell: |
-      $installer = Get-ChildItem "release\Reaper-Toolbox*.exe" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
-      if (-not $installer) { throw "No installer found!" }
-      Write-Host "Running $($installer.FullName)"
-      Start-Process $installer.FullName -ArgumentList "/SILENT","/VERYSILENT","/DIR=`"$env:INSTALL_DIR`"" -Wait -NoNewWindow
-    displayName: 🚀 Test Install
-
-  - script: type "$(INSTALL_DIR)\setup.log"
-    displayName: 📋 Show Install Log
-
-  - script: test-installation.bat skipinstall
-    displayName: ✅ Run Installation Tests
+  - script: test-installation.bat
+    displayName: ✅ Run Installation Test
     env:
       INSTALL_DIR: $(INSTALL_DIR)
 
