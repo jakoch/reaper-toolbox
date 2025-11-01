@@ -34,7 +34,7 @@
 #if AppVersionStartsWithDev == 1
   #define VERSION_INFO_VERSION "1.0.0"
   #define APP_VERSION          "1.0.0-" + APP_VERSION
-#else 
+#else
   #define APP_VERSION_WITHOUT_LEADING_V StringChange(APP_VERSION, "v", "")
   #define APP_VERSION APP_VERSION_WITHOUT_LEADING_V
   #define VERSION_INFO_VERSION APP_VERSION_WITHOUT_LEADING_V
@@ -50,7 +50,7 @@
 ; NOTE: The value of AppId uniquely identifies this application.
 ; Do not use the same AppId value in installers for other applications.
 ; (To generate a new GUID, click Tools | Generate GUID inside the IDE.)
-AppId={{A7C79074-FBA9-42B1-A858-E142036E8EBE}} 
+AppId={{A7C79074-FBA9-42B1-A858-E142036E8EBE}}
 AppName={#APP_NAME}
 AppVerName={#APP_NAME} {#APP_VERSION}
 AppVersion={#APP_VERSION}
@@ -69,7 +69,7 @@ VersionInfoCopyright=Copyright (C) 2018 - {#COPYRIGHT_YEAR} {#APP_PUBLISHER}, Al
 OutputDir=..\release
 OutputBaseFilename=Reaper-Toolbox-v{#APP_VERSION}-x64
 
-; compression           
+; compression
 Compression=lzma2/ultra
 LZMAUseSeparateProcess=yes
 LZMANumBlockThreads=2
@@ -85,15 +85,14 @@ DisableStartupPrompt=yes
 DisableReadyPage=yes
 CreateAppDir=yes
 AppendDefaultDirName=yes
-DefaultDirName={commonpf}\Reaper 
+DefaultDirName={commonpf}\Reaper
 ShowComponentSizes=no
 PrivilegesRequired=none
 Uninstallable=no
 DefaultGroupName=Reaper
- 
+
 ; style
 WizardStyle=modern
-BackColor=clBlack 
 ;SetupIconFile={#SOURCE_ROOT}..\installer\icons\Setup.ico
 ;WizardImageFile={#SOURCE_ROOT}..\installer\icons\banner-left-164x314-standard.bmp
 ;WizardSmallImageFile={#SOURCE_ROOT}..\installer\icons\icon-topright-55x55-stamp.bmp
@@ -129,11 +128,11 @@ Name: "{group}\Reaper (x64) SWS User Guide"; Filename: "{app}\Reaper_SWS_User_Gu
 Name: "{group}\REAPER License and User Agreement"; Filename: "{app}\license.txt"; WorkingDir: "{app}"
 Name: "{group}\Whatsnew.txt"; Filename: "{app}\whatsnew.txt"; WorkingDir: "{app}"
 Name: "{group}\Show software versions"; Filename: "{app}\reaper_toolbox_versions.txt"; WorkingDir: "{app}"
-    
+
 [Registry]
 ; create file-association for ".rpp" files. this is an optional and user selectable task, see [Tasks] section.
 Root: HKCR; Subkey: ".rpp";                       ValueData: "Reaper\";                      ValueType: string;  ValueName: ""; Flags: uninsdeletevalue; Tasks: associate
-Root: HKCR; Subkey: "Reaper";                     ValueData: "Program Reaper\";              ValueType: string;  ValueName: ""; Flags: uninsdeletekey; Tasks: associate 
+Root: HKCR; Subkey: "Reaper";                     ValueData: "Program Reaper\";              ValueType: string;  ValueName: ""; Flags: uninsdeletekey; Tasks: associate
 Root: HKCR; Subkey: "Reaper\DefaultIcon";         ValueData: "{app}\reaper.exe,0";           ValueType: string;  ValueName: ""; Tasks: associate
 Root: HKCR; Subkey: "Reaper\shell\open\command";  ValueData: """{app}\reaper.exe"" ""%1""";  ValueType: string;  ValueName: ""; Tasks: associate
 
@@ -145,13 +144,13 @@ var
 begin
     ProgressPage := CreateOutputProgressPage('Installing Reaper and additional components..', '');
     ProgressPage.Show;
-    try    
+    try
       #include "install.iss"
-             
+
       // Installation Script for "Reaper Toolbox Versions" file
       ExtractTemporaryFile('reaper_toolbox_versions.txt');
       RenameFile(ExpandConstant('{tmp}\reaper_toolbox_versions.txt'), ExpandConstant('{app}\reaper_toolbox_versions.txt'));
-      
+
     finally
       ProgressPage.Hide;
     end;
@@ -161,6 +160,6 @@ procedure CurStepChanged(CurStep: TSetupStep);
 begin
   if CurStep = ssInstall then
   begin
-    InstallProgressPage;  
-  end;   
-end;    
+    InstallProgressPage;
+  end;
+end;
