@@ -50,7 +50,12 @@ steps:
   - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
     displayName: 🙏 Compile Installer
 
-  - script: release\Reaper-Toolbox*.exe /LOG /SILENT /VERYSILENT /DIR="$(INSTALL_DIR)"
+  - script: |
+    for %%F in (release\Reaper-Toolbox*.exe) do (
+        echo Found installer: %%F
+        "%%F" /LOG /SILENT /VERYSILENT /DIR="$(INSTALL_DIR)"
+        exit /b
+    )
     displayName: 🚀 Test Install
 
   - script: type "$(INSTALL_DIR)\setup.log"
