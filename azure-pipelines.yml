@@ -17,6 +17,7 @@ variables:
 
 steps:
   - checkout: self
+    fetchTags: false
     fetchDepth: 1
     displayName: 🤘 Checkout Code
 
@@ -51,11 +52,16 @@ steps:
     displayName: 🙏 Compile Installer
 
   - script: |
-      setlocal enabledelayedexpansion
-      for /f "delims=" %%F in ('dir /b release\Reaper-Toolbox*.exe') do set INSTALLER=%%F
-      echo Found installer: !INSTALLER!
-      "release\!INSTALLER!" /LOG /SILENT /VERYSILENT /DIR="$(INSTALL_DIR)"
+      SETLOCAL EnableDelayedExpansion
+      PUSHD release
+      FOR /f "delims=" %%F IN ('dir /b Reaper-Toolbox*.exe') DO (
+          echo Found installer: %%F
+          call "%%F" /SILENT /VERYSILENT /DIR="%INSTALL_DIR%"
+          exit /b
+      )
+      POPD
     displayName: 🚀 Test Install
+
 
   - script: type "$(INSTALL_DIR)\setup.log"
     displayName: 📋 Show Install Log
