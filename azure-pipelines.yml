@@ -51,17 +51,12 @@ steps:
   - script: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=$(APP_BUILD_VERSION) installer\Reaper-Toolbox.iss
     displayName: 🙏 Compile Installer
 
-  - script: |
-      SETLOCAL EnableDelayedExpansion
-      PUSHD release
-      FOR /f "delims=" %%F IN ('dir /b Reaper-Toolbox*.exe') DO (
-          echo Found installer: %%F
-          call "%%F" /SILENT /VERYSILENT /DIR="%INSTALL_DIR%"
-          exit /b
-      )
-      POPD
+  - powershell: |
+      $installer = Get-ChildItem "release\Reaper-Toolbox*.exe" | Sort-Object LastWriteTime -Descending | Select-Object -First 1
+      if (-not $installer) { throw "No installer found!" }
+      Write-Host "Running $($installer.FullName)"
+      Start-Process $installer.FullName -ArgumentList "/SILENT","/VERYSILENT","/DIR=`"$env:INSTALL_DIR`"" -Wait -NoNewWindow
     displayName: 🚀 Test Install
-
 
   - script: type "$(INSTALL_DIR)\setup.log"
     displayName: 📋 Show Install Log
