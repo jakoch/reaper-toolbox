@@ -1,4 +1,6 @@
-# Reaper Toolbox [![Build Installer](https://github.com/jakoch/reaper-toolbox/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/jakoch/reaper-toolbox/actions/workflows/build.yml) [![License](https://img.shields.io/github/license/jakoch/reaper-toolbox.svg)](https://github.com/jakoch/reaper-toolbox/blob/main/LICENSE.md)
+# 🎧 Reaper Toolbox [![Build Installer](https://github.com/jakoch/reaper-toolbox/actions/workflows/build.yml/badge.svg?branch=main)](https://github.com/jakoch/reaper-toolbox/actions/workflows/build.yml) [![License](https://img.shields.io/github/license/jakoch/reaper-toolbox.svg)](https://github.com/jakoch/reaper-toolbox/blob/main/LICENSE.md)
+
+### What is Reaper Toolbox?
 
 Reaper Toolbox is an automated build system that creates a unified, portable
 installer for the Reaper DAW.
@@ -11,37 +13,45 @@ and generation of Inno Setup installer scripts.
 
 Weekly builds are automated via GitHub Actions and published directly to GitHub Releases.
 
-#### Why Use Reaper Toolbox?
+### Why Use Reaper Toolbox?
 
 Setting up Reaper with all essential extensions can be time-consuming.
 Reaper Toolbox automates this process, it downloads, configures,
 and packages everything into one ready-to-install bundle.
 This ensures a consistent, up-to-date environment with minimal effort.
 
-#### Included Components
+### Bundled Components
 
-##### 🎧 What is Reaper DAW?
+The installer includes the following components:
+
+- **Reaper DAW**: Core digital audio workstation (portable installation).
+- **Reaper User Guide**: Official PDF documentation.
+- **SWS Extension**: Comprehensive extension suite enhancing Reaper functionality.
+- **SWS User Guide**: PDF documentation for SWS features.
+- **ReaPack**: Package manager for extensions and scripts.
+
+#### What is Reaper DAW?
 
 [Reaper](https://www.reaper.fm/) (Rapid Environment for Audio Production, Engineering, and Recording) is a powerful,
 lightweight, and highly customizable digital audio workstation.
 It supports multitrack audio and MIDI recording, editing, mixing, and mastering on Windows, macOS, and Linux.
 Reaper is known for its small footprint, fast performance, and extensive scripting and extension capabilities.
 
-##### 🧩 What is SWS?
+#### What is SWS?
 
 [SWS Extension](https://www.sws-extension.org/) (Standing Water Studios) is a free, open-source add-on for Reaper that greatly expands its functionality.
 It provides hundreds of additional actions, tools, and workflow enhancements — including region management, auto-coloring, cycle actions, and project organization utilities.
 Many advanced Reaper workflows depend on SWS for extended automation and customization.
 
-##### 📦 What is ReaPack?
+#### What is ReaPack?
 
 [ReaPack](https://reapack.com/) is a package manager for Reaper extensions, scripts, and plug-ins.
 It allows users to easily browse, install, and update community-created Reaper tools from curated repositories.
 ReaPack makes it simple to manage and update extensions from one place.
 
-#### Development Notes
+### Development Notes
 
-##### 🏗️ Architecture
+#### Architecture
 
 - **Build Script (`build-tools/build.php`)**: A PHP-based automation script that:
   - Defines version grabber classes for each component (Reaper, SWS Extension, ReaPack, user guides).
@@ -58,7 +68,7 @@ ReaPack makes it simple to manage and update extensions from one place.
   - **PHP Runtime (`build-tools/php/`)**: Embedded PHP executable for running the build script on Windows.
   - **Inno Setup Compiler (`build-tools/InnoSetup6/`)**: Compiler for creating the Windows installer executable.
 
-##### ⚙️ Build Process
+#### Build Process
 
 1. **Version Detection**: The PHP script queries official sources to get the latest versions of:
    - Reaper DAW (from reaper.fm)
@@ -75,24 +85,7 @@ ReaPack makes it simple to manage and update extensions from one place.
 
 5. **Testing**: An automated installation test is done to verify the installer works correctly.
 
-##### 📦 Bundled Components
-
-The installer includes the following components:
-
-- **Reaper DAW**: Core digital audio workstation (portable installation).
-- **Reaper User Guide**: Official PDF documentation.
-- **SWS Extension**: Comprehensive extension suite enhancing Reaper functionality.
-- **SWS User Guide**: PDF documentation for SWS features.
-- **ReaPack**: Package manager for extensions and scripts.
-
-##### 🚀 CI/CD Pipeline
-
-- **GitHub Actions**: Weekly builds on Sundays, triggered by schedule or main branch changes.
-- **Azure Pipelines**: Disabled, previously used for CI.
-- **Appveyor**: Deprecated, previously used for CI.
-- **Release Process**: Automatically creates GitHub releases with the built installer and version notes.
-
-##### 🧰 Local Development
+#### Local Development
 
 To build locally on Windows:
 
@@ -105,7 +98,7 @@ To build locally on Windows:
 
 2. Test with `test-installation.bat`.
 
-##### ✅ TODO
+#### TODO
 
 - [x] ~Appveyor~
 - [x] ~Azure Pipelines~ (disabled)
