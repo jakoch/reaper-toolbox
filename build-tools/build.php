@@ -1,4 +1,15 @@
-<?php
+<?php declare(strict_types=1);
+
+/**
+ * Reaper Toolbox - InnoSetup Installer Build Script
+ *
+ * SPDX-FileCopyrightText: 2018-2025 Jens A. Koch
+ * SPDX-License-Identifier: MIT
+ *
+ * For the full copyright and license information, please view
+ * the LICENSE file that was distributed with this source code.
+ */
+
 error_reporting(E_ALL);
 
 class Paths
@@ -379,7 +390,18 @@ class InnosetupGenerator
         $max_num_components = count($this->grabbers);
         $progress = 1;
 
-        $out = '';
+		$lines = [
+			'// ===============================================================',
+			'// This is an auto-generated Inno Setup installation script.',
+			'// Modifications to this file will be overwritten!',
+			'// ===============================================================',
+			'',
+			'',
+			'// ===== Installation Steps for Components =====',
+		];
+
+		$out = implode(PHP_EOL, $lines) . PHP_EOL;
+
         foreach($this->grabbers as $component)
         {
             $s0 = '// Installation Script for "%s"';

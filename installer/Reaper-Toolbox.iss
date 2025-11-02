@@ -16,20 +16,16 @@
 ; |  For the full copyright and license information, please view         |
 ; |  the LICENSE file that was distributed with this source code.        |
 ; |                                                                      |
-; |  Note for developers                                                 |
-; |  -------------------                                                 |
-; |  A good resource for developing and understanding                    |
-; |  Inno Setup Script files is the official "Inno Setup Help".          |
-; |  Website:  http://jrsoftware.org/ishelp/index.php                    |
-; |                                                                      |
 ; +---------------------------------------------------------------------<3
 
-; version is set here, when the version isn't passed to the compiler on invocation
+; On CI, the app version is provided to the compiler via:
+;   /DAPP_VERSION=%APP_BUILD_VERSION%
+; Use the following as a fallback if no version is passed.
 #ifndef APP_VERSION
 #define APP_VERSION          "1.0.0"
 #endif
 
-; reset APP_VERSIONs like "dev-as7d6a" to simply "1.0.0" for VersionInfoVersion!
+; Reset an APP_VERSION like "dev-as7d6a" to simply "1.0.0" for VersionInfoVersion!
 #define AppVersionStartsWithDev Pos("dev-", APP_VERSION)
 #if AppVersionStartsWithDev == 1
   #define VERSION_INFO_VERSION "1.0.0"
@@ -70,11 +66,12 @@ OutputDir=..\release
 OutputBaseFilename=Reaper-Toolbox-v{#APP_VERSION}-x64
 
 ; compression
-Compression=lzma2/ultra
+Compression=lzma2/ultra64
+CompressionThreads=2
 LZMAUseSeparateProcess=yes
 LZMANumBlockThreads=2
 InternalCompressLevel=max
-SolidCompression=true
+SolidCompression=yes
 
 ; TODO: show a warning to the user to save & close any running applications
 CloseApplications=no
