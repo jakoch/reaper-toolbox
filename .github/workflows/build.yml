@@ -1,4 +1,4 @@
-name: Build Reaper Toolbox
+name: Build Installer
 
 on:
   push:
