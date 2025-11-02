@@ -24,7 +24,7 @@ for /f "delims=" %%f in ('dir /b /o-d "%~dp0\release\Reaper-Toolbox-*-x64.exe"')
 
 echo Installing "%INSTALLER%"
 
-"%~dp0release\%INSTALLER%" /SILENT /VERYSILENT /DIR=%INSTALL_DIR%
+"%~dp0release\%INSTALLER%" /SILENT /VERYSILENT /SUPPRESSMSGBOXES /SP- /DIR=%INSTALL_DIR%
 
 :verify
 rem ------------------------------

@@ -12,6 +12,9 @@ pr: none
 pool:
   vmImage: "windows-latest"
 
+variables:
+  INSTALL_DIR: $(Agent.BuildDirectory)\reapertest
+
 steps:
   - checkout: self
     fetchTags: false
@@ -49,11 +52,11 @@ steps:
     displayName: 🙏 Compile Installer
 
   - script: |
-      echo Installing to D:\a\1\reapertest
+      echo Installing to %INSTALL_DIR%
       call test-installation.bat
     displayName: ✅ Run Installation Test
     env:
-      INSTALL_DIR: D:\a\1\s\reapertest
+      INSTALL_DIR: $(INSTALL_DIR)
 
   # https://learn.microsoft.com/en-us/azure/devops/pipelines/tasks/reference/github-release-v1
   - task: GitHubRelease@1
