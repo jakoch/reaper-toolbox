@@ -108,7 +108,7 @@ class VersionGrabber extends DownloadUtil
   {
     $json = $this->download($url);
 
-    return json_decode($json, 1);
+    return json_decode($json, true);
   }
 
   function getDownloads()
