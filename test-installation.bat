@@ -15,16 +15,24 @@ rem ------------------------------
 rem      Install Reaper Toolbox
 rem ------------------------------
 
-rem Find installer
+rem Find latest installer
 for /f "delims=" %%f in ('dir /b /o-d "%~dp0\release\Reaper-Toolbox-*-x64.exe"') do (
-    set INSTALLER=%%f
+    set "INSTALLER=%%f"
     goto :found
 )
 :found
 
+if "%INSTALLER%"=="" (
+    echo [FAIL] Installer not found!
+    exit /b 1
+)
+
 echo Installing "%INSTALLER%"
 
-"%~dp0release\%INSTALLER%" /SILENT /VERYSILENT /SUPPRESSMSGBOXES /SP- /DIR=%INSTALL_DIR%
+rem Install silently if INSTALL_DIR is defined, otherwise default
+if "%INSTALL_DIR%"=="" set "INSTALL_DIR=%CD%\reaper-test"
+
+start /wait "" "%~dp0release\%INSTALLER%" /SILENT /VERYSILENT /SUPPRESSMSGBOXES /SP- /DIR="%INSTALL_DIR%"
 
 :verify
 rem ------------------------------
