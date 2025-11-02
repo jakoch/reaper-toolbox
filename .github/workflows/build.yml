@@ -62,30 +62,6 @@ jobs:
           echo Building version %APP_BUILD_VERSION%
           build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=%APP_BUILD_VERSION% installer\Reaper-Toolbox.iss
 
-    #   - name: ✅ Run Installation Test
-    #     shell: pwsh
-    #     env:
-    #        INSTALL_DIR: ${{ github.workspace }}\install
-    #     run: |
-    #       $installerPath = Join-Path $env:GITHUB_WORKSPACE "release\Reaper-Toolbox-v1.0.0-dev-$env:GIT_SHORT_HASH-x64.exe"
-    #       $installDir = $env:INSTALL_DIR
-    #       Write-Host "Installing to $installDir"
-    #       $arguments = @(
-    #           "/SILENT",
-    #           "/VERYSILENT",
-    #           "/SUPPRESSMSGBOXES",
-    #           "/NORESTART",
-    #           "/NOCANCEL",
-    #           "/SP-",
-    #           "/DIR=`"$installDir`""
-    #       )
-    #       $process = Start-Process -FilePath $installerPath -ArgumentList $arguments -PassThru -NoNewWindow
-    #       if (-not $process.WaitForExit(180000)) {  # 3 min timeout
-    #           Write-Error "Installer timed out!"
-    #           Stop-Process -Id $process.Id -Force
-    #           exit 1
-    #       }
-
       - name: ✅ Run Installation Test
         shell: cmd
         env:
@@ -106,7 +82,11 @@ jobs:
         env:
             GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-            gh release create v${{ github.run_number }}_${{ env.GIT_SHORT_HASH }} release/Reaper-Toolbox*.exe \
-            --title "Reaper-Toolbox v${{ github.run_number }}_${{ env.GIT_SHORT_HASH }}" \
+          DATE_TAG=$(date -u +"%y%m%d")
+          RELEASE_TAG="v${DATE_TAG}_r${{ github.run_number }}"
+          RELEASE_TITLE="Reaper-Toolbox ${RELEASE_TAG}"
+          echo "Creating release: $RELEASE_TITLE"
+          gh release create "$RELEASE_TAG" release/Reaper-Toolbox*.exe \
+            --title "$RELEASE_TITLE" \
             --notes-file release_notes.md \
             --generate-notes
