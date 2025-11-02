@@ -1,0 +1,76 @@
+name: Build Reaper Toolbox
+
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 12 * * 0'  # Weekly on Sunday at 12:00 UTC
+  workflow_dispatch:  # Allow manual trigger
+
+# "contents: write" allows the action to create a release
+# this is required by the release step, which uses "gh release create"
+permissions:
+  contents: write
+
+# improve CI concurrency by automatically cancelling outdated jobs
+concurrency:
+  group: ${{ github.workflow }}-${{ github.head_ref || github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  build:
+
+    # https://github.com/actions/runner-images
+    # Installed Software: https://github.com/actions/runner-images/blob/main/images/windows/Windows2025-Readme.md
+    runs-on: windows-2025
+
+    steps:
+      - name: 🤘 Checkout Code
+        uses: actions/checkout@v5 # https://github.com/actions/checkout
+        with:
+          fetch-depth: 1
+
+      - name: Set Version Number vars
+        shell: cmd
+        run: |
+          FOR /F "tokens=* USEBACKQ" %%F IN (`git rev-parse --short HEAD`) DO (
+              echo GIT_COMMIT_HASH_SHORT=%%F >> %GITHUB_ENV%
+          )
+          echo GIT_BRANCH=%GITHUB_REF_NAME% >> %GITHUB_ENV%
+          echo APP_BUILD_VERSION=dev-%GIT_COMMIT_HASH_SHORT% >> %GITHUB_ENV%
+
+      - name: ℹ Show APP_BUILD_VERSION
+        shell: bash
+        run: |
+          echo $GIT_COMMIT_HASH_SHORT
+          echo $GIT_BRANCH
+          echo $APP_BUILD_VERSION
+
+      - name: 🔽 Download Components
+        run: build-tools\php\php.exe build-tools\build.php
+
+      - name: ℹ List Downloads
+        shell: bash
+        run: |
+          ls -lhs downloads
+          ls -lhs build-tools
+          ls -lhs .
+
+      - name: 🙏 Compile Installer
+        run: build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=%APP_BUILD_VERSION% installer\Reaper-Toolbox.iss
+
+      - name: ✅ Run Installation Test
+        shell: cmd
+        run: |
+          echo Installing to %INSTALL_DIR%
+          test-installation.bat
+
+      - name: 📢 Create GitHub Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          gh release create v${{ github.run_number }}_${{ env.GIT_COMMIT_HASH_SHORT }} release/Reaper-Toolbox*.exe \
+            --title "Reaper-Toolbox v${{ github.run_number }}_${{ env.GIT_COMMIT_HASH_SHORT }}" \
+            --notes-file release_notes.md \
+            --generate-notes
