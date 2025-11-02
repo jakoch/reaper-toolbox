@@ -180,7 +180,7 @@ class Reaper_VersionGrabber extends VersionGrabber
 
   function getInstallCommand()
   {
-    $install_cmd_template = "Exec(ExpandConstant('{tmp}\%s'), '/S /PORTABLE /D=\"' + ExpandConstant('{app}') + '\"', '', SW_HIDE, ewWaitUntilTerminated, ResultCode);";
+    $install_cmd_template = "Exec(ExpandConstant('{tmp}\%s'), '/S /PORTABLE /D=' + ExpandConstant('{app}'), '', SW_HIDE, ewWaitUntilTerminated, ResultCode);";
 
     return sprintf($install_cmd_template, $this->filename);
   }

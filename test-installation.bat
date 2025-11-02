@@ -16,7 +16,7 @@ rem      Install Reaper Toolbox
 rem ------------------------------
 
 rem Find latest installer
-for /f "delims=" %%f in ('dir /b /o-d "%~dp0\release\Reaper-Toolbox-*-x64.exe"') do (
+for /f "delims=" %%f in ('dir /b /o-d "%~dp0release\Reaper-Toolbox-*-x64.exe"') do (
     set "INSTALLER=%%f"
     goto :found
 )
@@ -29,9 +29,9 @@ if "%INSTALLER%"=="" (
 
 echo Installing "%INSTALLER%"
 
-echo Running: "%~dp0\release\%INSTALLER%" /SILENT /VERYSILENT /SUPPRESSMSGBOXES /SP- /DIR="%INSTALL_DIR%"
+echo Running: "%~dp0release\%INSTALLER%" /SILENT /VERYSILENT /SUPPRESSMSGBOXES /SP- /DIR="%INSTALL_DIR%"
 
-start /wait "" "%~dp0\release\%INSTALLER%" /SILENT /VERYSILENT /SUPPRESSMSGBOXES /SP- /DIR="%INSTALL_DIR%"
+start /wait "" "%~dp0release\%INSTALLER%" /SILENT /VERYSILENT /SUPPRESSMSGBOXES /SP- /DIR="%INSTALL_DIR%"
 
 :verify
 rem ------------------------------
