@@ -29,10 +29,9 @@ if "%INSTALLER%"=="" (
 
 echo Installing "%INSTALLER%"
 
-rem Install silently if INSTALL_DIR is defined, otherwise default
-if "%INSTALL_DIR%"=="" set "INSTALL_DIR=%CD%\reaper-test"
+echo Running: "%~dp0\release\%INSTALLER%" /SILENT /VERYSILENT /SUPPRESSMSGBOXES /SP- /DIR="%INSTALL_DIR%"
 
-start /wait "" "%~dp0release\%INSTALLER%" /SILENT /VERYSILENT /SUPPRESSMSGBOXES /SP- /DIR="%INSTALL_DIR%"
+start /wait "" "%~dp0\release\%INSTALLER%" /SILENT /VERYSILENT /SUPPRESSMSGBOXES /SP- /DIR="%INSTALL_DIR%"
 
 :verify
 rem ------------------------------
