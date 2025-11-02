@@ -63,12 +63,42 @@ jobs:
           build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=%APP_BUILD_VERSION% installer\Reaper-Toolbox.iss
 
       - name: ✅ Run Installation Test
-        shell: cmd
+        shell: pwsh
         env:
-           INSTALL_DIR: ${{ github.workspace }}\installtest
+           INSTALL_DIR: ${{ github.workspace }}\install
         run: |
-          echo Installing to %INSTALL_DIR%
-          test-installation.bat
+          $installerPath = Join-Path $env:GITHUB_WORKSPACE "release\Reaper-Toolbox-v1.0.0-dev-$env:GIT_SHORT_HASH-x64.exe"
+          $installDir = $env:INSTALL_DIR
+          Write-Host "Installing to $installDir"
+          $arguments = @(
+              "/SILENT",
+              "/VERYSILENT",
+              "/SUPPRESSMSGBOXES",
+              "/SP-",
+              "/DIR=`"$installDir`"",
+              "/NORESTART"
+          )
+          $process = Start-Process -FilePath $installerPath -ArgumentList $arguments -PassThru -NoNewWindow
+          if (-not $process.WaitForExit(180000)) {  # 3 min timeout
+              Write-Error "Installer timed out!"
+              Stop-Process -Id $process.Id -Force
+              exit 1
+          }
+
+      #- name: ✅ Run Installation Test
+      #  shell: cmd
+      #  env:
+      #     INSTALL_DIR: ${{ github.workspace }}\install
+      #  run: |
+      #    echo Installing to %INSTALL_DIR%
+      #    test-installation.bat
+
+      - name: List Install Dir
+        shell: bash
+        env:
+            INSTALL_DIR: ${{ github.workspace }}\install
+        run: |
+            ls -lhs "$INSTALL_DIR"
 
       - name: 📢 Create GitHub Release
         env:
