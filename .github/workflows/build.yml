@@ -102,10 +102,11 @@ jobs:
             ls -lhs "$INSTALL_DIR"
 
       - name: 📢 Create GitHub Release
+        shell: bash
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+            GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: |
-          gh release create v${{ github.run_number }}_${{ env.GIT_SHORT_HASH }} release/Reaper-Toolbox*.exe \
+            gh release create v${{ github.run_number }}_${{ env.GIT_SHORT_HASH }} release/Reaper-Toolbox*.exe \
             --title "Reaper-Toolbox v${{ github.run_number }}_${{ env.GIT_SHORT_HASH }}" \
             --notes-file release_notes.md \
             --generate-notes
