@@ -65,7 +65,7 @@ jobs:
       - name: ✅ Run Installation Test
         shell: cmd
         env:
-           INSTALL_DIR: ${{ github.workspace }}\test_install
+           INSTALL_DIR: ${{ github.workspace }}\installtest
         run: |
           echo Installing to %INSTALL_DIR%
           test-installation.bat
