@@ -1,0 +1,8 @@
+downloads/
+
+# Generated InnoSetup Script file 
+# for include in the main installer
+installer/install.iss
+
+release/
+release_notes.md

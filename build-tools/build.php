@@ -321,12 +321,7 @@ class VersionDisplay
       file_put_contents($file, $this->printVersionTable());
     }
 
-    // Note: this approach is used to set the Github Release Notes on Appveyor
-    $file2 = __DIR__ . '/../set_release_description_env_var.bat';
     $desc = $this->printReleaseDescription();
-    file_put_contents($file2, "@echo off \nset RELEASE_DESCRIPTION=$desc");
-    //exec('cmd.exe /c '. $file2);
-    //unlink($file2);
 
     // Note: this approach is used to set the Github Release Notes on Azure-Pipelines
     $file3 = __DIR__ . '/../release_notes.md';
