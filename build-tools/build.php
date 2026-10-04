@@ -57,6 +57,11 @@ class DownloadUtil
 {
   function download($url)
   {
+    if (!$this->isUrlReachable($url)) {
+      fwrite(STDERR, sprintf("Website is not reachable: %s. Please try again later.%s", $url, PHP_EOL));
+      exit(1);
+    }
+
     $opts = [
       'http' =>[
         //'user_agent' => 'Reaper-Toolbox-Installer-Build-Script (https://github.com/jakoch/reaper-toolbox/)',
@@ -72,6 +77,42 @@ class DownloadUtil
     return $this->downloadFileWithRetry($url, $context);
   }
 
+  function isUrlReachable($url)
+  {
+    $opts = [
+      'http' => [
+        'method' => 'GET',
+        'header' => 'Range: bytes=0-0',
+        'timeout' => 20,
+        'ignore_errors' => true,
+      ]
+    ];
+    $context = stream_context_create($opts);
+
+    set_error_handler(static function ($severity) {
+      return $severity === E_WARNING;
+    }, E_WARNING);
+
+    try {
+      $headers = get_headers($url, false, $context);
+    } finally {
+      restore_error_handler();
+    }
+
+    if ($headers === false) {
+      return false;
+    }
+
+    $statusCode = null;
+    foreach ($headers as $header) {
+      if (preg_match('/^HTTP\/\S+\s+(\d{3})\b/', $header, $matches)) {
+        $statusCode = (int) $matches[1];
+      }
+    }
+
+    return $statusCode !== null && $statusCode >= 200 && $statusCode < 400;
+  }
+
   function downloadFileWithRetry($url, $context, $retries = 5)
   {
     $attempt = 1;
@@ -82,9 +123,16 @@ class DownloadUtil
         $content = file_get_contents($url, false, $context);
 
         if ($content === false) {
-            sleep(5); // Wait 5 seconds before retrying
+            if ($attempt < $retries) {
+                sleep(5); // Wait 5 seconds before retrying
+            }
             $attempt++;
         }
+    }
+
+    if ($content === false) {
+        fwrite(STDERR, sprintf("Website is not reachable: %s. Please try again later.%s", $url, PHP_EOL));
+        exit(1);
     }
 
     // check filesize
