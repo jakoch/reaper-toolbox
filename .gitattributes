@@ -1,0 +1,21 @@
+# This project is built on Windows with Inno Setup and batch files, so keep
+# text files in CRLF in the working tree. "text=auto" stores LF in the
+# repository (keeping diffs clean) and "eol=crlf" checks CRLF back out.
+* text=auto eol=crlf
+
+# Binaries must never be line-ending normalized.
+*.dll   binary
+*.exe   binary
+*.lib   binary
+*.e32   binary
+*.chm   binary
+*.bmp   binary
+*.ico   binary
+*.phar  binary
+*.png   binary
+*.jpg   binary
+*.jpeg  binary
+*.gif   binary
+*.zip   binary
+*.7z    binary
+*.gz    binary

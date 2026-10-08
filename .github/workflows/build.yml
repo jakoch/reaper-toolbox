@@ -62,7 +62,7 @@ jobs:
           echo Building version %APP_BUILD_VERSION%
           build-tools\InnoSetup6\iscc.exe /DAPP_VERSION=%APP_BUILD_VERSION% installer\Reaper-Toolbox.iss
 
-      - name: ✅ Run Installation Test
+      - name: ✅ Verify Installation
         shell: cmd
         env:
            INSTALL_DIR: "${{ github.workspace }}\\install"
